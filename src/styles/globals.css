@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+nextjs-portal {
+  display: none;
+}
