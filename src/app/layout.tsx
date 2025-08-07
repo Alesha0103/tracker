@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-// import { NextIntlClientProvider } from "next-intl";
-// import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 import "@/styles/globals.css";
 
@@ -13,15 +13,12 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    // const locale = await getLocale();
-    // const messages = await getMessages();
+    const locale = await getLocale();
 
     return (
-        <html lang={"en"}>
+        <html lang={locale}>
             <body className="bg-primary w-full h-[100dvh] flex flex-col scrollbar">
-                {/* <NextIntlClientProvider messages={messages}> */}
-                {children}
-                {/* </NextIntlClientProvider> */}
+                <NextIntlClientProvider>{children}</NextIntlClientProvider>
             </body>
         </html>
     );
