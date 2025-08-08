@@ -7,10 +7,18 @@ import Logo from "../assets/images/logo.png";
 import { useTranslations } from "next-intl";
 import { useAuthStore } from "@/store/auth-store";
 import { Locale } from "@/enums/auth";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
+    const router = useRouter();
+
     const t = useTranslations("general");
     const { setLocale } = useAuthStore();
+
+    const changeLocale = (locale: Locale) => () => {
+        setLocale(locale);
+        router.refresh();
+    };
 
     return (
         <div className="border-b-2 border-white/10 py-2 px-6">
@@ -19,11 +27,11 @@ export const Header = () => {
                 <span className="text-white font-fantasy">{t("appName")}</span>
             </div>
 
-            <button onClick={() => setLocale(Locale.UA)} className="bg-white">
+            <button onClick={changeLocale(Locale.UA)} className="bg-white">
                 Change Locale to UA
             </button>
             <button
-                onClick={() => setLocale(Locale.EN)}
+                onClick={changeLocale(Locale.EN)}
                 className="bg-white ml-10"
             >
                 Change Locale to En
