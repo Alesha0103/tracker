@@ -1,9 +1,3 @@
-import { Header } from "@/components/header";
-
 export default function HomePage() {
-    return (
-        <div className="">
-            <Header />
-        </div>
-    );
+    return <div className="text-red-500">Home Page</div>;
 }

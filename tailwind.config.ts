@@ -14,7 +14,9 @@ const config: Config = {
             inset: {},
             height: {},
             width: {},
-            maxWidth: {},
+            maxWidth: {
+                container: "1920px",
+            },
             minHeight: {},
             maxHeight: {},
             spacing: {},

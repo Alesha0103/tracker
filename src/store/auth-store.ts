@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface Authtate {
+    user: any;
     locale: Locale;
     setLocale: (locale: Locale) => void;
 }
@@ -11,6 +12,7 @@ interface Authtate {
 export const useAuthStore = create<Authtate>()(
     persist(
         (set) => ({
+            user: null,
             locale: Locale.EN,
 
             setLocale: (locale: Locale) => {
