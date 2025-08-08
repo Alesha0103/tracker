@@ -10,11 +10,13 @@ import { Locale } from "@/enums/auth";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { SelectItem } from "@radix-ui/react-select";
+import { CustomButton } from "./ui/custom-button";
 
 export const Header = () => {
     const router = useRouter();
 
     const t = useTranslations("general");
+    const tButtons = useTranslations("buttons");
     const { locale, setLocale } = useAuthStore();
 
     const rows = Object.keys(t.raw("locale"));
@@ -30,7 +32,7 @@ export const Header = () => {
                 <SelectItem
                     key={item}
                     value={item}
-                    className="text-slate-300 text-sm text-center cursor-pointer focus:text-white focus:bg-red-500 focus:outline-none focus:ring-0 focus:border-transparent rounded-sm py-1"
+                    className="text-slate-300 text-sm text-center cursor-pointer focus:text-white focus:bg-red-500 focus:outline-none focus:ring-0 focus:border-transparent rounded-sm py-1 transition-colors"
                 >
                     {t(`locale.${item}`)}
                 </SelectItem>
@@ -45,17 +47,20 @@ export const Header = () => {
                 <Image width={25} height={25} src={Logo} alt="logo" priority />
                 <span className="text-white font-fantasy">{t("appName")}</span>
             </div>
-            <Select onValueChange={(val) => changeLocale(val as Locale)}>
-                <SelectTrigger className="w-36 h-8 bg-horizontal-blue text-center">
-                    <SelectValue
-                        placeholder={t(`language`)}
-                        className="text-center"
-                    >
-                        {t(`locale.${locale}`) || t("language")}
-                    </SelectValue>
-                </SelectTrigger>
-                <SelectContent>{rows.map(renderLocaleItem)}</SelectContent>
-            </Select>
+            <div className="flex items-center gap-x-4">
+                <CustomButton text={tButtons("signIn")} />
+                <Select onValueChange={(val) => changeLocale(val as Locale)}>
+                    <SelectTrigger className="w-36 h-8 bg-horizontal-blue text-center">
+                        <SelectValue
+                            placeholder={t(`language`)}
+                            className="text-center"
+                        >
+                            {t(`locale.${locale}`) || t("language")}
+                        </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>{rows.map(renderLocaleItem)}</SelectContent>
+                </Select>
+            </div>
         </div>
     );
 };

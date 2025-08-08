@@ -27,6 +27,8 @@ const config: Config = {
             backgroundImage: {
                 "horizontal-blue":
                     "linear-gradient(to right, #07071dff, #030324ff)",
+                "horisontal-hover-blue":
+                    "linear-gradient(to right, #08082c, #050515)",
             },
             fontFamily: {
                 fantasy: ["fantasy"],

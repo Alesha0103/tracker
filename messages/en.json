@@ -6,5 +6,8 @@
             "en": "English",
             "ua": "Ukraine"
         }
+    },
+    "buttons": {
+        "signIn": "Sign In"
     }
 }
