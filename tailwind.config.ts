@@ -3,6 +3,7 @@ import type { Config } from "tailwindcss";
 
 export const basicColors = {
     primary: "#050515",
+    secondary: "#08082c",
 };
 
 const config: Config = {
@@ -23,13 +24,16 @@ const config: Config = {
             keyframes: {},
             animation: {},
             fontSize: {},
-            backgroundImage: {},
-            borderRadius: {},
+            backgroundImage: {
+                "horizontal-blue":
+                    "linear-gradient(to right, #07071dff, #030324ff)",
+            },
             fontFamily: {
                 fantasy: ["fantasy"],
             },
         },
     },
+    plugins: [require("tailwindcss-animate")],
 };
 
 export default config;

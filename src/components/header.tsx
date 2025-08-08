@@ -1,41 +1,61 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 
 import Logo from "../assets/images/logo.png";
 import { useTranslations } from "next-intl";
 import { useAuthStore } from "@/store/auth-store";
 import { Locale } from "@/enums/auth";
 import { useRouter } from "next/navigation";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import { SelectItem } from "@radix-ui/react-select";
 
 export const Header = () => {
     const router = useRouter();
 
     const t = useTranslations("general");
-    const { setLocale } = useAuthStore();
+    const { locale, setLocale } = useAuthStore();
 
-    const changeLocale = (locale: Locale) => () => {
+    const rows = Object.keys(t.raw("locale"));
+
+    const changeLocale = (locale: Locale) => {
         setLocale(locale);
         router.refresh();
     };
 
+    const renderLocaleItem = useMemo(
+        () => (item: string) => {
+            return (
+                <SelectItem
+                    key={item}
+                    value={item}
+                    className="text-slate-300 text-sm text-center cursor-pointer focus:text-white focus:bg-red-500 focus:outline-none focus:ring-0 focus:border-transparent rounded-sm py-1"
+                >
+                    {t(`locale.${item}`)}
+                </SelectItem>
+            );
+        },
+        [locale, changeLocale]
+    );
+
     return (
-        <div className="border-b-2 border-white/10 py-2 px-6">
+        <div className="border-b-2 border-white/10 py-2 px-6 flex justify-between items-center">
             <div className="flex gap-x-2 items-center">
                 <Image width={25} height={25} src={Logo} alt="logo" priority />
                 <span className="text-white font-fantasy">{t("appName")}</span>
             </div>
-
-            <button onClick={changeLocale(Locale.UA)} className="bg-white">
-                Change Locale to UA
-            </button>
-            <button
-                onClick={changeLocale(Locale.EN)}
-                className="bg-white ml-10"
-            >
-                Change Locale to En
-            </button>
+            <Select onValueChange={(val) => changeLocale(val as Locale)}>
+                <SelectTrigger className="w-36 h-8 bg-horizontal-blue text-center">
+                    <SelectValue
+                        placeholder={t(`language`)}
+                        className="text-center"
+                    >
+                        {t(`locale.${locale}`) || t("language")}
+                    </SelectValue>
+                </SelectTrigger>
+                <SelectContent>{rows.map(renderLocaleItem)}</SelectContent>
+            </Select>
         </div>
     );
 };

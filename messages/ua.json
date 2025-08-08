@@ -1,5 +1,10 @@
 {
     "general": {
-        "appName": "Трекер"
+        "appName": "Time Tracker",
+        "language": "Мова",
+        "locale": {
+            "en": "Англійська",
+            "ua": "Українська"
+        }
     }
 }
