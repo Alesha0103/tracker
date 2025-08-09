@@ -8,6 +8,19 @@
         }
     },
     "buttons": {
-        "signIn": "Увійти"
+        "signIn": "Увійти",
+        "submit": "Відправити",
+        "cancel": "Відмінити"
+    },
+    "formErrors": {
+        "emailInvalid": "Пошта не правильна",
+        "requiredField": "Поле обов'язкове"
+    },
+    "forms": {
+        "login": "Вхід у систему",
+        "loginDescription": "Перевірте вашу пошту. Ми відправили вам пароль для входу.",
+        "emailPlaceholder": "Введіть вашу пошту",
+        "passwordPlaceholder": "Введіть ваш пароль",
+        "isAdmin": "Ви адмін?"
     }
 }

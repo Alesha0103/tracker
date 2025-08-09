@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import React, { FC } from "react";
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     text: string;
     className?: string;
     onClick?: () => void;
@@ -25,7 +25,7 @@ export const CustomButton: FC<Props> = ({
                 "text-white text-sm rounded-sm px-4 py-2 h-fit bg-secondary",
                 isDisabled
                     ? "bg-gray-800 text-slate-500 pointer-event-none"
-                    : "hover:bg-red-500 transition-colors duration-200",
+                    : "hover:bg-dark-blue transition-colors duration-200",
                 className
             )}
             disabled={isDisabled}

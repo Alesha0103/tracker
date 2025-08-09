@@ -4,28 +4,21 @@ import type { Config } from "tailwindcss";
 export const basicColors = {
     primary: "#050515",
     secondary: "#08082c",
+    midnight: "#05051E",
+    "dark-blue": "#08086d",
+    "light-blue": "#0F0FA0",
 };
 
 const config: Config = {
     content: ["./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
-        screens: {},
         extend: {
-            inset: {},
-            height: {},
-            width: {},
             maxWidth: {
                 container: "1920px",
             },
-            minHeight: {},
-            maxHeight: {},
-            spacing: {},
             colors: {
                 ...basicColors,
             },
-            keyframes: {},
-            animation: {},
-            fontSize: {},
             backgroundImage: {
                 "horizontal-blue":
                     "linear-gradient(to right, #07071dff, #030324ff)",

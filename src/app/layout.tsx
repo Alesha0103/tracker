@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     title: "Time Tracker",
 };
 
-export default async function RootLayout({
+const RootLayout = async ({
     children,
 }: Readonly<{
     children: React.ReactNode;
-}>) {
+}>) => {
     const locale = await getLocale();
 
     return (
@@ -30,4 +30,6 @@ export default async function RootLayout({
             </body>
         </html>
     );
-}
+};
+
+export default RootLayout;

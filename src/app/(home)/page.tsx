@@ -1,3 +1,5 @@
-export default function HomePage() {
-    return <div className="text-red-500">Home Page</div>;
-}
+import { SignIn } from "@/components/sign-in/sign-in";
+
+const HomePage = () => <SignIn />;
+
+export default HomePage;

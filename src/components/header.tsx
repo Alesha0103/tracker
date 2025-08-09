@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import Logo from "../assets/images/logo.png";
 import { useTranslations } from "next-intl";
@@ -10,7 +10,6 @@ import { Locale } from "@/enums/auth";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { SelectItem } from "@radix-ui/react-select";
-import { CustomButton } from "./ui/custom-button";
 import useModal from "@/hooks/use-modal";
 
 export const Header = () => {
@@ -20,7 +19,7 @@ export const Header = () => {
     const tButtons = useTranslations("buttons");
     const { user, locale, setLocale } = useAuthStore();
 
-    const { openModal, closeModal, Modal } = useModal();
+    const { Modal } = useModal();
 
     const rows = Object.keys(t.raw("locale"));
 
@@ -35,7 +34,7 @@ export const Header = () => {
                 <SelectItem
                     key={item}
                     value={item}
-                    className="text-slate-300 text-sm text-center cursor-pointer focus:text-white focus:bg-red-500 focus:outline-none focus:ring-0 focus:border-transparent rounded-sm py-1 transition-colors"
+                    className="text-slate-300 text-sm text-center cursor-pointer focus:text-white focus:bg-dark-blue focus:outline-none focus:ring-0 focus:border-transparent rounded-sm py-1 transition-colors"
                 >
                     {t(`locale.${item}`)}
                 </SelectItem>
@@ -44,15 +43,11 @@ export const Header = () => {
         [locale, changeLocale]
     );
 
-    const onLogoutClick = useCallback(() => {
-        openModal(<div className="text-white">AUTH MODAL</div>);
-    }, [openModal, closeModal]);
-
     return (
         <>
             <header className="border-b-2 border-white/10">
                 <div className="container mx-auto py-2 px-6 flex justify-between items-center">
-                    <div className="flex gap-x-2 items-center">
+                    <div className="flex gap-x-1 sm:gap-x-2 items-center">
                         <Image
                             width={25}
                             height={25}
@@ -60,20 +55,15 @@ export const Header = () => {
                             alt="logo"
                             priority
                         />
-                        <span className="text-white font-fantasy">
+                        <span className="text-xs sm:text-xl text-center text-white font-fantasy">
                             {t("appName")}
                         </span>
                     </div>
                     <div className="flex items-center gap-x-4">
-                        <CustomButton
-                            text={tButtons("signIn")}
-                            onClick={onLogoutClick}
-                            isDisabled={!user}
-                        />
                         <Select
                             onValueChange={(val) => changeLocale(val as Locale)}
                         >
-                            <SelectTrigger className="w-36 h-8 bg-horizontal-blue text-center">
+                            <SelectTrigger className="sm:w-36 h-8 bg-midnight text-center">
                                 <SelectValue
                                     placeholder={t(`language`)}
                                     className="text-center"
