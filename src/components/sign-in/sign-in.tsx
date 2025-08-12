@@ -56,7 +56,7 @@ export const SignIn = () => {
                             : tModals("errorDescription")
                     }
                     onSubmit={closeModal}
-                    submitButtonClassName="hover:bg-red-500"
+                    submitButtonClassName="bg-red-500 hover:bg-red-400"
                 />
             );
         }
