@@ -1,3 +1,5 @@
-const TrackingPage = () => <div className="text-white">Tracking Page</div>;
+import { Tracking } from "@/components/tracking/tracking";
+
+const TrackingPage = () => <Tracking />;
 
 export default TrackingPage;

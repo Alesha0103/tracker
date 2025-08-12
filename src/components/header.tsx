@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { SelectItem } from "@radix-ui/react-select";
 import useModal from "@/hooks/use-modal";
+import { CustomButton } from "./ui/custom-button";
 
 export const Header = () => {
     const router = useRouter();
@@ -46,7 +47,7 @@ export const Header = () => {
     return (
         <>
             <header className="border-b-2 border-white/10">
-                <div className="container mx-auto py-2 px-6 flex justify-between items-center">
+                <div className="container py-2 px-6 flex justify-between items-center">
                     <div className="flex gap-x-1 sm:gap-x-2 items-center">
                         <Image
                             width={25}
@@ -60,6 +61,7 @@ export const Header = () => {
                         </span>
                     </div>
                     <div className="flex items-center gap-x-4">
+                        <CustomButton text={tButtons("logout")}/>
                         <Select
                             onValueChange={(val) => changeLocale(val as Locale)}
                         >

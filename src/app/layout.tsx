@@ -11,6 +11,8 @@ import {
     useQuery,
 } from "@tanstack/react-query";
 import { QueryProvider } from "@/components/query-provider";
+import { Suspense } from "react";
+import { Loader } from "@/components/loader";
 
 export const metadata: Metadata = {
     title: "Time Tracker",
@@ -28,11 +30,15 @@ const RootLayout = async ({
             <body className="bg-primary w-full h-[100dvh] flex flex-col scrollbar">
                 <NextIntlClientProvider>
                     <QueryProvider>
-                        <Header />
-                        <main className="flex-1 flex flex-col h-fit w-full mx-auto">
-                            {children}
-                        </main>
-                        <Footer />
+                        <Suspense
+                            fallback={<Loader/>}
+                        >
+                            <Header />
+                            <main className="flex-1 flex flex-col h-fit w-full mx-auto">
+                                {children}
+                            </main>
+                            <Footer />
+                        </Suspense>
                     </QueryProvider>
                 </NextIntlClientProvider>
             </body>

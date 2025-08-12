@@ -32,7 +32,7 @@ export const SignIn = () => {
     const tModals = useTranslations("modals");
     const tForms = useTranslations("forms");
 
-    const { mutateAsync: signIn } = useSignIn();
+    const { mutateAsync: signIn, isPending } = useSignIn();
 
     const { openModal, closeModal, Modal } = useModal();
 
@@ -121,6 +121,7 @@ export const SignIn = () => {
                             type="submit"
                             text={tButtons("submit")}
                             className="rounded-md w-full"
+                            disabled={isPending}
                         />
                     </form>
                 </Form>

@@ -5,6 +5,11 @@
         "locale": {
             "en": "English",
             "ua": "Ukraine"
+        },
+        "notFound": "Page you are looking for was not found",
+        "user": {
+            "hello": "Hello, <gradient>{name}</gradient>",
+            "trackingDescription": "You can track your working hours in the table below."
         }
     },
     "serverErrors": {
@@ -12,6 +17,7 @@
     },
     "buttons": {
         "signIn": "Sign In",
+        "logout": "Log Out",
         "submit": "Submit",
         "cancel": "Cancel",
         "ok": "Ok"
@@ -30,5 +36,8 @@
         "emailPlaceholder": "Enter your email",
         "passwordPlaceholder": "Enter your password",
         "isAdmin": "Are you an Admin?"
+    },
+    "tables": {
+        "noWorkflow": "You don't have any workflow for now."
     }
 }

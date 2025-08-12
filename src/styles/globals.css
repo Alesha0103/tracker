@@ -11,7 +11,7 @@ nextjs-portal {
 }
 
 .container {
-    @apply w-full max-w-container;
+    @apply w-full max-w-container mx-auto;
 }
 
 input:-webkit-autofill {

@@ -5,6 +5,11 @@
         "locale": {
             "en": "Англійська",
             "ua": "Українська"
+        },
+        "notFound": "Page you are looking for is not found",
+        "user": {
+            "hello": "Привіт, <gradient>{name}</gradient>",
+            "trackingDescription": "Ви можете відстежувати свій робочий час у таблиці знизу."
         }
     },
     "serverErrors": {
@@ -12,6 +17,7 @@
     },
     "buttons": {
         "signIn": "Увійти",
+        "logout": "Вийти",
         "submit": "Відправити",
         "cancel": "Відмінити",
         "ok": "Зрозуміло"
@@ -30,5 +36,8 @@
         "emailPlaceholder": "Введіть вашу пошту",
         "passwordPlaceholder": "Введіть ваш пароль",
         "isAdmin": "Ви адмін?"
+    },
+    "tables": {
+        "noWorkflow": "Наразі у вас немає жодного робочого процесу."
     }
 }
