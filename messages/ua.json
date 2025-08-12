@@ -7,10 +7,18 @@
             "ua": "Українська"
         }
     },
+    "serverErrors": {
+        "E_VALIDATION_ERROR": "Неправильна електронна адреса чи пароль"
+    },
     "buttons": {
         "signIn": "Увійти",
         "submit": "Відправити",
-        "cancel": "Відмінити"
+        "cancel": "Відмінити",
+        "ok": "Зрозуміло"
+    },
+    "modals": {
+        "error": "Помилка",
+        "errorDescription": "Сталася невідома помилка."
     },
     "formErrors": {
         "emailInvalid": "Пошта не правильна",

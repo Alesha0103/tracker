@@ -7,37 +7,59 @@ import {
     FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInFields } from "@/types/auth";
 import { signInValidationSchema } from "@/schemas/auth";
 import { CustomButton } from "../ui/custom-button";
 import { useTranslations } from "next-intl";
-import { Switch } from "../ui/switch";
+import { useSignIn } from "@/services/auth/mutation";
+import useModal from "@/hooks/use-modal";
+import { BaseModal } from "../modals/base-modal";
+import { AxiosError } from "axios";
+import { ApiErrorResponse } from "@/types/types";
 
 export const SignIn = () => {
     const tButtons = useTranslations("buttons");
+    const tErrors = useTranslations("serverErrors");
+    const tModals = useTranslations("modals");
     const tForms = useTranslations("forms");
+
+    const { mutateAsync: signIn } = useSignIn();
+
+    const { openModal, closeModal, Modal } = useModal();
 
     const form = useForm<SignInFields>({
         resolver: zodResolver(signInValidationSchema),
         defaultValues: {
             email: "",
             password: "",
-            isAdmin: false,
         },
     });
     const { control, handleSubmit } = form;
 
     const onSubmit: SubmitHandler<SignInFields> = async (formData) => {
-        console.log("formData", formData);
         try {
-        } catch {}
+            await signIn(formData);
+        } catch (err) {
+            const error = err as AxiosError<ApiErrorResponse>;
+            const message = error.response?.data?.message;
+            openModal(
+                <BaseModal
+                    title={tModals("error")}
+                    description={
+                        tErrors.has(message as string)
+                            ? tErrors(message as string)
+                            : tModals("errorDescription")
+                    }
+                    onSubmit={closeModal}
+                    submitButtonClassName="hover:bg-red-500"
+                />
+            );
+        }
     };
 
     return (
@@ -116,6 +138,7 @@ export const SignIn = () => {
                     </form>
                 </Form>
             </section>
+            <Modal />
         </div>
     );
 };

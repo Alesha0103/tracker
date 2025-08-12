@@ -1,15 +1,17 @@
 import { Locale } from "@/enums/auth";
+import { User } from "@/types/auth";
 import { setCookie } from "cookies-next";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface Authtate {
-    user: any;
+interface UserState {
+    user: User | null;
     locale: Locale;
     setLocale: (locale: Locale) => void;
+    setUser: (user: User | null) => void;
 }
 
-export const useAuthStore = create<Authtate>()(
+export const useUserStore = create<UserState>()(
     persist(
         (set) => ({
             user: null,
@@ -19,10 +21,14 @@ export const useAuthStore = create<Authtate>()(
                 set({ locale });
                 setCookie("locale", locale);
             },
+            setUser: (user: User | null) => {
+                set({ user });
+            },
         }),
         {
-            name: "auth",
+            name: "user",
             partialize: (state) => ({
+                user: state.user,
                 locale: state.locale,
             }),
         }

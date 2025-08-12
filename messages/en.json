@@ -7,10 +7,18 @@
             "ua": "Ukraine"
         }
     },
+    "serverErrors": {
+        "E_VALIDATION_ERROR": "Incorrect email or password"
+    },
     "buttons": {
         "signIn": "Sign In",
         "submit": "Submit",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "ok": "Ok"
+    },
+    "modals": {
+        "error": "Error",
+        "errorDescription": "Something wrong happened while your process."
     },
     "formErrors": {
         "emailInvalid": "Invalid email",

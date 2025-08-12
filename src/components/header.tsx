@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 
 import Logo from "../assets/images/logo.png";
 import { useTranslations } from "next-intl";
-import { useAuthStore } from "@/store/auth-store";
+import { useUserStore } from "@/store/user-store";
 import { Locale } from "@/enums/auth";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
@@ -17,7 +17,7 @@ export const Header = () => {
 
     const t = useTranslations("general");
     const tButtons = useTranslations("buttons");
-    const { user, locale, setLocale } = useAuthStore();
+    const { user, locale, setLocale } = useUserStore();
 
     const { Modal } = useModal();
 
