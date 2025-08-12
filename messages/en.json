@@ -1,0 +1,34 @@
+{
+    "general": {
+        "appName": "Time Tracker",
+        "language": "Language",
+        "locale": {
+            "en": "English",
+            "ua": "Ukraine"
+        }
+    },
+    "serverErrors": {
+        "E_VALIDATION_ERROR": "Incorrect email or password"
+    },
+    "buttons": {
+        "signIn": "Sign In",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "ok": "Ok"
+    },
+    "modals": {
+        "error": "Error",
+        "errorDescription": "Something wrong happened while your process."
+    },
+    "formErrors": {
+        "emailInvalid": "Invalid email",
+        "requiredField": "Field is required"
+    },
+    "forms": {
+        "login": "Log In",
+        "loginDescription": "Check your inbox. We sent you required creds.",
+        "emailPlaceholder": "Enter your email",
+        "passwordPlaceholder": "Enter your password",
+        "isAdmin": "Are you an Admin?"
+    }
+}

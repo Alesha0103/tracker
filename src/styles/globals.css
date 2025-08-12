@@ -1,9 +1,15 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
 }
 
 nextjs-portal {
-  display: none;
+    display: none;
+}
+
+.container {
+    @apply w-full max-w-container;
 }

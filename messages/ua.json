@@ -1,0 +1,34 @@
+{
+    "general": {
+        "appName": "Time Tracker",
+        "language": "Мова",
+        "locale": {
+            "en": "Англійська",
+            "ua": "Українська"
+        }
+    },
+    "serverErrors": {
+        "E_VALIDATION_ERROR": "Неправильна електронна адреса чи пароль"
+    },
+    "buttons": {
+        "signIn": "Увійти",
+        "submit": "Відправити",
+        "cancel": "Відмінити",
+        "ok": "Зрозуміло"
+    },
+    "modals": {
+        "error": "Помилка",
+        "errorDescription": "Сталася невідома помилка."
+    },
+    "formErrors": {
+        "emailInvalid": "Пошта не правильна",
+        "requiredField": "Поле обов'язкове"
+    },
+    "forms": {
+        "login": "Вхід у систему",
+        "loginDescription": "Перевірте вашу пошту. Ми відправили вам пароль для входу.",
+        "emailPlaceholder": "Введіть вашу пошту",
+        "passwordPlaceholder": "Введіть ваш пароль",
+        "isAdmin": "Ви адмін?"
+    }
+}
