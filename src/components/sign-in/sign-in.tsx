@@ -21,8 +21,12 @@ import useModal from "@/hooks/use-modal";
 import { BaseModal } from "../modals/base-modal";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
+import { useRouter } from "next/navigation";
+import { AppRoute } from "@/enums/auth";
 
 export const SignIn = () => {
+    const router = useRouter();
+
     const tButtons = useTranslations("buttons");
     const tErrors = useTranslations("serverErrors");
     const tModals = useTranslations("modals");
@@ -43,7 +47,10 @@ export const SignIn = () => {
 
     const onSubmit: SubmitHandler<SignInFields> = async (formData) => {
         try {
-            await signIn(formData);
+            const user = await signIn(formData);
+            user?.isAdmin
+                ? router.replace(AppRoute.DASHBOARD)
+                : router.replace(AppRoute.TRACKING);
         } catch (err) {
             const error = err as AxiosError<ApiErrorResponse>;
             const message = error.response?.data?.message;
@@ -110,26 +117,6 @@ export const SignIn = () => {
                                 </FormItem>
                             )}
                         />
-                        {/* <FormField
-                            control={control}
-                            name="isAdmin"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormControl>
-                                        <div className="flex items-center gap-x-2">
-                                            <Switch
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                            <label className="text-slate-400 text-sm">
-                                                {tForms("isAdmin")}
-                                            </label>
-                                        </div>
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> */}
                         <CustomButton
                             type="submit"
                             text={tButtons("submit")}
