@@ -12,6 +12,7 @@ export const CustomButton: FC<Props> = ({
     text,
     isDisabled,
     className,
+    type = "button",
     onClick,
 }) => {
     const handleClick = () => {
@@ -20,6 +21,7 @@ export const CustomButton: FC<Props> = ({
 
     return (
         <button
+            type={type}
             onClick={handleClick}
             className={cn(
                 "text-white text-sm rounded-sm px-4 py-2 h-fit bg-secondary",

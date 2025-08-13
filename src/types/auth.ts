@@ -1,5 +1,5 @@
 import { signInValidationSchema } from "@/schemas/auth";
-import z, { string } from "zod";
+import z from "zod";
 
 export type SignInFields = z.infer<typeof signInValidationSchema>;
 
