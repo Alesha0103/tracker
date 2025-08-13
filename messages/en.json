@@ -9,7 +9,8 @@
         "notFound": "Page you are looking for was not found",
         "user": {
             "hello": "Hello, <gradient>{name}</gradient>",
-            "trackingDescription": "You can track your working hours in the table below."
+            "trackingDescription": "You can track your working hours in the table below.",
+            "dashboardDescription": "Here you can check each user that you have in the system."
         }
     },
     "serverErrors": {
@@ -20,11 +21,15 @@
         "logout": "Log Out",
         "submit": "Submit",
         "cancel": "Cancel",
-        "ok": "Ok"
+        "addUser": "Add User",
+        "ok": "Ok",
+        "yes": "Yes",
+        "no": "No"
     },
     "modals": {
-        "error": "Error",
-        "errorDescription": "Something wrong happened while your process."
+        "error": "An Error Occurred",
+        "errorDescription": "Something wrong happened while your process.",
+        "isLogout": "Are you sure you want to logout?"
     },
     "formErrors": {
         "emailInvalid": "Invalid email",
@@ -38,6 +43,8 @@
         "isAdmin": "Are you an Admin?"
     },
     "tables": {
-        "noWorkflow": "You don't have any workflow for now."
+        "noWorkflow": "You don't have any workflow for now.",
+        "noUsers": "You don't have any user.",
+        "addUserDescription": "Click to add new user."
     }
 }

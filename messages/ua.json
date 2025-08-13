@@ -9,7 +9,8 @@
         "notFound": "Page you are looking for is not found",
         "user": {
             "hello": "Привіт, <gradient>{name}</gradient>",
-            "trackingDescription": "Ви можете відстежувати свій робочий час у таблиці знизу."
+            "trackingDescription": "Ви можете відстежувати свій робочий час у таблиці знизу.",
+            "dashboardDescription": "Тут ви можете перевірити кожного юзера що є у системі."
         }
     },
     "serverErrors": {
@@ -20,11 +21,15 @@
         "logout": "Вийти",
         "submit": "Відправити",
         "cancel": "Відмінити",
-        "ok": "Зрозуміло"
+        "addUser": "Додати юзера",
+        "ok": "Зрозуміло",
+        "yes": "Так",
+        "no": "Ні"
     },
     "modals": {
         "error": "Помилка",
-        "errorDescription": "Сталася невідома помилка."
+        "errorDescription": "Сталася невідома помилка.",
+        "isLogout": "Ви впевнені що хочете вийти з системи?"
     },
     "formErrors": {
         "emailInvalid": "Пошта не правильна",
@@ -38,6 +43,8 @@
         "isAdmin": "Ви адмін?"
     },
     "tables": {
-        "noWorkflow": "Наразі у вас немає жодного робочого процесу."
+        "noWorkflow": "Наразі у вас немає жодного робочого процесу.",
+        "noUsers": "Наразі у вас немає жодного юзеру.",
+        "addUserDescription": "Натисніть кнопку щоб додати нового юзера."
     }
 }

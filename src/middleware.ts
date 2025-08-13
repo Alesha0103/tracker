@@ -21,5 +21,16 @@ export async function middleware(req: NextRequest) {
         }
     }
 
+    if (currentPath === "/" && token && userType) {
+        return NextResponse.redirect(
+            new URL(
+                userType === UserType.ADMIN
+                    ? AppRoute.DASHBOARD
+                    : AppRoute.TRACKING,
+                req.url
+            )
+        );
+    }
+
     return NextResponse.next();
 }

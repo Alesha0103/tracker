@@ -18,11 +18,12 @@ import { CustomButton } from "../ui/custom-button";
 import { useTranslations } from "next-intl";
 import { useSignIn } from "@/services/auth/mutation";
 import useModal from "@/hooks/use-modal";
-import { BaseModal } from "../modals/base-modal";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { AppRoute } from "@/enums/auth";
+import { BaseModal } from "../ui/modals/base-modal";
+import { SectionTitleUI } from "../ui/typography";
 
 export const SignIn = () => {
     const router = useRouter();
@@ -57,6 +58,7 @@ export const SignIn = () => {
             openModal(
                 <BaseModal
                     title={tModals("error")}
+                    submitButtonText={tButtons("ok")}
                     description={
                         tErrors.has(message as string)
                             ? tErrors(message as string)
@@ -77,9 +79,9 @@ export const SignIn = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="w-11/12 sm:w-96 mx-auto space-y-4 p-6 rounded-md bg-midnight border-2 border-secondary"
                     >
-                        <h2 className="text-white text-center text-2xl font-semibold">
+                        <SectionTitleUI>
                             {tForms("login")}
-                        </h2>
+                        </SectionTitleUI>
                         <FormDescription className="text-sm text-slate-400">
                             {tForms("loginDescription")}
                         </FormDescription>

@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import {
     DialogContent,
     DialogDescription,
-    DialogHeader,
     DialogTitle,
-} from "../ui/dialog";
-import { CustomButton } from "../ui/custom-button";
+} from "../dialog";
+import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 interface Props {
     title?: string;
@@ -16,6 +16,7 @@ interface Props {
     submitButtonClassName?: string;
     cancelButtonClassName?: string;
     onSubmit?: () => void;
+    onCancel?: () => void;
 }
 
 export const BaseModal: FC<Props> = ({
@@ -26,6 +27,7 @@ export const BaseModal: FC<Props> = ({
     submitButtonClassName,
     cancelButtonClassName,
     onSubmit,
+    onCancel,
 }) => {
     const tButtons = useTranslations("buttons");
     return (
@@ -36,17 +38,20 @@ export const BaseModal: FC<Props> = ({
             <DialogDescription className="text-slate-400">
                 {description}
             </DialogDescription>
-            {cancelButtonText && (
+            <div className="flex gap-x-10">
+                {onCancel && (
+                    <CustomButton
+                        text={cancelButtonText || tButtons("cancel")}
+                        className={cn("w-full", cancelButtonClassName)}
+                        onClick={onCancel}
+                    />
+                )}
                 <CustomButton
-                    text={cancelButtonText || tButtons("cancel")}
-                    className={cancelButtonClassName}
+                    text={submitButtonText || tButtons("submit")}
+                    onClick={onSubmit}
+                    className={cn("w-full", submitButtonClassName)}
                 />
-            )}
-            <CustomButton
-                text={submitButtonText || tButtons("ok")}
-                onClick={onSubmit}
-                className={submitButtonClassName}
-            />
+            </div>
         </DialogContent>
     );
 };

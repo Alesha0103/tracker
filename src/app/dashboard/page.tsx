@@ -1,3 +1,5 @@
-const DashboardPage = () => <div className="text-white">Dashboard Page</div>;
+import { Dashboard } from "@/components/dashboard/dashboard";
+
+const DashboardPage = () => <Dashboard />;
 
 export default DashboardPage;

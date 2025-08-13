@@ -1,17 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 
-import Logo from "../assets/images/logo.png";
+import Logo from "../../assets/images/logo.png";
 import { useTranslations } from "next-intl";
 import { useUserStore } from "@/store/user-store";
 import { Locale } from "@/enums/auth";
 import { useRouter } from "next/navigation";
-import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "./select";
 import { SelectItem } from "@radix-ui/react-select";
 import useModal from "@/hooks/use-modal";
-import { CustomButton } from "./ui/custom-button";
+import { CustomButton } from "./custom-button";
+import { LogoutModal } from "./modals/logout-modal";
+import { SpanUI } from "./typography";
 
 export const Header = () => {
     const router = useRouter();
@@ -20,7 +22,7 @@ export const Header = () => {
     const tButtons = useTranslations("buttons");
     const { user, locale, setLocale } = useUserStore();
 
-    const { Modal } = useModal();
+    const { openModal, closeModal, Modal } = useModal();
 
     const rows = Object.keys(t.raw("locale"));
 
@@ -44,6 +46,22 @@ export const Header = () => {
         [locale, changeLocale]
     );
 
+    const onLogoutClick = useCallback(async () => {
+        openModal(
+            <LogoutModal openModal={openModal} closeModal={closeModal} />
+        );
+    }, [user]);
+
+    // const renderLogoutButton = useMemo(() => {
+    //     if (!user) return;
+    //     return (
+    //         <CustomButton
+    //             text={tButtons("logout")}
+    //             onClick={onLogoutClick}
+    //         />
+    //     )
+    // }, [router, locale, changeLocale, user]);
+
     return (
         <>
             <header className="border-b-2 border-white/10">
@@ -56,12 +74,17 @@ export const Header = () => {
                             alt="logo"
                             priority
                         />
-                        <span className="text-xs sm:text-xl text-center text-white font-fantasy">
+                        <SpanUI className="text-xs sm:text-xl text-center text-white font-fantasy">
                             {t("appName")}
-                        </span>
+                        </SpanUI>
                     </div>
                     <div className="flex items-center gap-x-4">
-                        <CustomButton text={tButtons("logout")}/>
+                        {user && (
+                            <CustomButton
+                                text={tButtons("logout")}
+                                onClick={onLogoutClick}
+                            />
+                        )}
                         <Select
                             onValueChange={(val) => changeLocale(val as Locale)}
                         >
