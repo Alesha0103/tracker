@@ -18,11 +18,11 @@ export const EmptyUsersTable: FC<Props> = ({ isLoading }) => {
                 <Loader />
             ) : (
                 <div className="flex flex-col">
-                    <TitleUI>
-                        {tTables("noUsers")}
-                    </TitleUI>
-                    <TextUI className="text-center mt-2 mb-6">{tTables("addUserDescription")}</TextUI>
-                    <CustomButton text={tButtons("addUser")}/>
+                    <TitleUI>{tTables("noUsers")}</TitleUI>
+                    <TextUI className="text-center mt-2 mb-6">
+                        {tTables("addUserDescription")}
+                    </TextUI>
+                    <CustomButton text={tButtons("addUser")} />
                 </div>
             )}
         </div>

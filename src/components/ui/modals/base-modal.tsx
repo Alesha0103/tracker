@@ -1,9 +1,5 @@
 import React, { FC } from "react";
-import {
-    DialogContent,
-    DialogDescription,
-    DialogTitle,
-} from "../dialog";
+import { DialogContent, DialogDescription, DialogTitle } from "../dialog";
 import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";

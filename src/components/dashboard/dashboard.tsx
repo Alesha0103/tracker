@@ -18,11 +18,15 @@ export const Dashboard = () => {
                         {tUser.rich("hello", {
                             name: user?.email || "--",
                             gradient: (chunk) => (
-                                <SpanUI className="text-blue-500 hidden sm:inline">{chunk}</SpanUI>
+                                <SpanUI className="text-blue-500 hidden sm:inline">
+                                    {chunk}
+                                </SpanUI>
                             ),
                         })}
                     </GlobalTitleUI>
-                    <TextUI className="sm:hidden text-blue-500 text-center text-lg font-semibold truncate">{user?.email}</TextUI>
+                    <TextUI className="sm:hidden text-blue-500 text-center text-lg font-semibold truncate">
+                        {user?.email}
+                    </TextUI>
                 </div>
                 <TextUI className="text-center">
                     {tUser("dashboardDescription")}

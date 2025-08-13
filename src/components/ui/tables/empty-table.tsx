@@ -11,13 +11,7 @@ export const EmptyTable: FC<Props> = ({ isLoading }) => {
     const t = useTranslations("tables");
     return (
         <div className="h-96 w-11/12 mx-auto bg-midnight flex items-center justify-center rounded-md relative">
-            {isLoading ? (
-                <Loader />
-            ) : (
-                <TitleUI>
-                    {t("noWorkflow")}
-                </TitleUI>
-            )}
+            {isLoading ? <Loader /> : <TitleUI>{t("noWorkflow")}</TitleUI>}
         </div>
     );
 };

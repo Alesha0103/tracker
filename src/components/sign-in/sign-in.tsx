@@ -79,9 +79,7 @@ export const SignIn = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="w-11/12 sm:w-96 mx-auto space-y-4 p-6 rounded-md bg-midnight border-2 border-secondary"
                     >
-                        <SectionTitleUI>
-                            {tForms("login")}
-                        </SectionTitleUI>
+                        <SectionTitleUI>{tForms("login")}</SectionTitleUI>
                         <FormDescription className="text-sm text-slate-400">
                             {tForms("loginDescription")}
                         </FormDescription>
