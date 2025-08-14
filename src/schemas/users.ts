@@ -7,6 +7,6 @@ export const addUserSchema = z.object({
 });
 
 export const editUserSchema = z.object({
-    projects: z.any(),
+    projects: z.array(z.string()),
     isAdmin: z.boolean(),
 });

@@ -1,11 +1,11 @@
 "use client";
 
 import { EditUserFields, User } from "@/types/users";
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useCallback, useMemo, useState } from "react";
 import { DialogContent, DialogTitle } from "../dialog";
 import { useTranslations } from "next-intl";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { editUserSchema } from "@/schemas/users";
 import { Input } from "../input";
@@ -16,6 +16,8 @@ import { useEditUser } from "@/services/users/mutations";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
 import { BaseModal } from "./base-modal";
+import { Button } from "../button";
+import { X } from "lucide-react";
 
 interface Props {
     user: User;
@@ -36,21 +38,22 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
     const form = useForm<EditUserFields>({
         resolver: zodResolver(editUserSchema),
         defaultValues: {
-            projects: user.projects || [],
+            projects: (user.projects || []).filter((p) => p?.trim() !== ""),
             isAdmin: user.isAdmin,
         },
     });
-    const { control, handleSubmit } = form;
+    const { control, watch, handleSubmit } = form;
+    const projectsWatch = watch("projects");
+
+    const { fields, append, remove } = useFieldArray({
+        control,
+        // @ts-ignore
+        name: "projects",
+    });
 
     const onSubmit: SubmitHandler<EditUserFields> = async (formData) => {
-        const dto = {
-            ...formData,
-            projects: formData.projects
-                ? formData.projects.split(/[\s,]+/).filter(Boolean)
-                : null,
-        };
         try {
-            await editUser(dto);
+            await editUser(formData);
             closeModal();
         } catch (err) {
             const error = err as AxiosError<ApiErrorResponse>;
@@ -70,6 +73,11 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
             );
         }
     };
+
+    const addMoreInput = useCallback(() => {
+        if (fields.length === 5) return;
+        append("");
+    }, [fields, append]);
 
     return (
         <DialogContent className="bg-midnight max-w-md" aria-describedby={""}>
@@ -106,21 +114,42 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
             </div>
             <Form {...form}>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <FormField
-                        control={control}
-                        name="projects"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormControl>
-                                    <Input
-                                        placeholder={tForms(
-                                            "projectPlaceholder"
-                                        )}
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
+                    {fields.map((field, idx) => (
+                        <div
+                            key={field.id}
+                            className="flex gap-x-2 items-center"
+                        >
+                            <FormField
+                                control={control}
+                                name={`projects.${idx}`}
+                                render={({ field }) => (
+                                    <FormItem className="flex-1">
+                                        <FormControl>
+                                            <Input
+                                                placeholder={tForms(
+                                                    "projectPlaceholder"
+                                                )}
+                                                {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <X
+                                className="text-slate-300 hover:cursor-pointer"
+                                onClick={() => remove(idx)}
+                            />
+                        </div>
+                    ))}
+                    <CustomButton
+                        type="button"
+                        variant="ghost"
+                        className="h-8 text-blue-500 p-0 hover:underline"
+                        onClick={addMoreInput}
+                        text="Add one more project"
+                        isDisabled={projectsWatch.some(
+                            (p: string) => !p?.trim()
                         )}
                     />
                     <FormField

@@ -4,20 +4,38 @@ import React, { FC } from "react";
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     text: string;
     className?: string;
-    onClick?: () => void;
     isDisabled?: boolean;
+    variant?: "default" | "ghost";
+    onClick?: () => void;
 }
 
 export const CustomButton: FC<Props> = ({
     text,
     isDisabled,
     className,
+    variant = "default",
     type = "button",
     onClick,
 }) => {
     const handleClick = () => {
         onClick?.();
     };
+
+    if (variant === "ghost")
+        return (
+            <button
+                type={type}
+                onClick={handleClick}
+                className={cn(
+                    "text-white text-sm bg-transparent focus:outline-none focus:ring-0",
+                    className,
+                    isDisabled && "text-slate-600 hover:no-underline"
+                )}
+                disabled={isDisabled}
+            >
+                {text}
+            </button>
+        );
 
     return (
         <button

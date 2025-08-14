@@ -26,7 +26,8 @@
         "addUser": "Add User",
         "ok": "Ok",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "addProject": "Add one more project"
     },
     "modals": {
         "error": "An Error Occurred",
