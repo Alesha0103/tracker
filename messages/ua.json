@@ -6,6 +6,8 @@
             "en": "Англійська",
             "ua": "Українська"
         },
+        "yes": "Так",
+        "no": "Ні",
         "notFound": "Page you are looking for is not found",
         "user": {
             "hello": "Привіт, <gradient>{name}</gradient>",
@@ -35,6 +37,9 @@
         "addUser": {
             "title": "Додати юзера"
         },
+        "editUser": {
+            "title": "Редагування юзера"
+        },
         "login": {
             "title": "Вхід у систему",
             "description": "Перевірте вашу пошту. Ми відправили вам пароль для входу.",
@@ -48,7 +53,8 @@
     "forms": {
         "emailPlaceholder": "Введіть пошту",
         "passwordPlaceholder": "Введіть пароль",
-        "isAdmin": "Це адмін?"
+        "isAdmin": "Це адмін?",
+        "projectPlaceholder": "Введіть назву проєкту"
     },
     "tables": {
         "noWorkflow": "Наразі у вас немає жодного робочого процесу.",
@@ -56,7 +62,7 @@
         "addUserDescription": "Натисніть кнопку щоб додати нового юзера.",
         "usersTable": {
             "email": "Пошта",
-            "project": "Проєкт",
+            "projects": "Проєкти",
             "admin": "Адмін",
             "activated": "Акаунт активовано",
             "hours": "Затрекані години",

@@ -6,6 +6,8 @@
             "en": "English",
             "ua": "Ukraine"
         },
+        "yes": "Yes",
+        "no": "No",
         "notFound": "Page you are looking for was not found",
         "user": {
             "hello": "Hello, <gradient>{name}</gradient>",
@@ -35,6 +37,9 @@
         "addUser": {
             "title": "Add User"
         },
+        "editUser": {
+            "title": "Edit User"
+        },
         "login": {
             "title": "Log In",
             "description": "Check your inbox. We sent you required creds.",
@@ -48,18 +53,20 @@
     "forms": {
         "emailPlaceholder": "Enter email",
         "passwordPlaceholder": "Enter password",
-        "isAdmin": "Is this an Admin?"
+        "isAdmin": "Is this an Admin?",
+        "projectPlaceholder": "Enter name of the project"
     },
     "tables": {
         "noWorkflow": "You don't have any workflow for now.",
         "noUsers": "You don't have any user.",
         "addUserDescription": "Click to add new user.",
+
         "usersTable": {
             "email": "Email",
-            "project": "Project",
+            "projects": "Projects",
             "admin": "Admin",
             "activated": "Activated",
-            "hours": "Tracked Hours",
+            "hours": "Tracked hours",
             "action": "Action"
         }
     }

@@ -5,3 +5,8 @@ export const addUserSchema = z.object({
     password: z.string().min(1, "requiredField"),
     isAdmin: z.boolean(),
 });
+
+export const editUserSchema = z.object({
+    projects: z.any(),
+    isAdmin: z.boolean(),
+});
