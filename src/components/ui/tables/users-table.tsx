@@ -32,19 +32,23 @@ export const UsersTable: FC<Props> = ({ users, isLoading }) => {
         <Table className="bg-midnight border-2 border-secondary rounded-md">
             <TableHeader>
                 <TableRow className="!border-b-2 border-slate-700">
-                    <TableHead className="text-white">Email</TableHead>
-                    <TableHead className="text-white">Project</TableHead>
-                    <TableHead className="text-white text-center">
-                        Admin
+                    <TableHead className="text-white">
+                        {tTables("usersTable.email")}
+                    </TableHead>
+                    <TableHead className="text-white">
+                        {tTables("usersTable.project")}
                     </TableHead>
                     <TableHead className="text-white text-center">
-                        Activated
+                        {tTables("usersTable.admin")}
                     </TableHead>
                     <TableHead className="text-white text-center">
-                        Tracked Hours
+                        {tTables("usersTable.activated")}
                     </TableHead>
                     <TableHead className="text-white text-center">
-                        Action
+                        {tTables("usersTable.hours")}
+                    </TableHead>
+                    <TableHead className="text-white text-center">
+                        {tTables("usersTable.action")}
                     </TableHead>
                 </TableRow>
             </TableHeader>

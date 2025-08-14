@@ -53,6 +53,14 @@
     "tables": {
         "noWorkflow": "You don't have any workflow for now.",
         "noUsers": "You don't have any user.",
-        "addUserDescription": "Click to add new user."
+        "addUserDescription": "Click to add new user.",
+        "usersTable": {
+            "email": "Email",
+            "project": "Project",
+            "admin": "Admin",
+            "activated": "Activated",
+            "hours": "Tracked Hours",
+            "action": "Action"
+        }
     }
 }
