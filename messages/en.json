@@ -5,6 +5,12 @@
         "locale": {
             "en": "English",
             "ua": "Ukraine"
+        },
+        "notFound": "Page you are looking for was not found",
+        "user": {
+            "hello": "Hello, <gradient>{name}</gradient>",
+            "trackingDescription": "You can track your working hours in the table below.",
+            "dashboardDescription": "Here you can check each user that you have in the system."
         }
     },
     "serverErrors": {
@@ -12,23 +18,49 @@
     },
     "buttons": {
         "signIn": "Sign In",
+        "logout": "Log Out",
         "submit": "Submit",
         "cancel": "Cancel",
-        "ok": "Ok"
+        "addUser": "Add User",
+        "ok": "Ok",
+        "yes": "Yes",
+        "no": "No"
     },
     "modals": {
-        "error": "Error",
-        "errorDescription": "Something wrong happened while your process."
+        "error": "An Error Occurred",
+        "errorDescription": "Something wrong happened while your process.",
+        "isLogout": {
+            "title": "Are you sure you want to logout?"
+        },
+        "addUser": {
+            "title": "Add User"
+        },
+        "login": {
+            "title": "Log In",
+            "description": "Check your inbox. We sent you required creds.",
+            "isActivated": "Your account is activated, please enter credentials that we sent on your email."
+        }
     },
     "formErrors": {
         "emailInvalid": "Invalid email",
         "requiredField": "Field is required"
     },
     "forms": {
-        "login": "Log In",
-        "loginDescription": "Check your inbox. We sent you required creds.",
-        "emailPlaceholder": "Enter your email",
-        "passwordPlaceholder": "Enter your password",
-        "isAdmin": "Are you an Admin?"
+        "emailPlaceholder": "Enter email",
+        "passwordPlaceholder": "Enter password",
+        "isAdmin": "Is this an Admin?"
+    },
+    "tables": {
+        "noWorkflow": "You don't have any workflow for now.",
+        "noUsers": "You don't have any user.",
+        "addUserDescription": "Click to add new user.",
+        "usersTable": {
+            "email": "Email",
+            "project": "Project",
+            "admin": "Admin",
+            "activated": "Activated",
+            "hours": "Tracked Hours",
+            "action": "Action"
+        }
     }
 }
