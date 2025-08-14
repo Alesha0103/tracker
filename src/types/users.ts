@@ -1,9 +1,14 @@
-import { addUserSchema } from "@/schemas/users";
+import { addUserSchema, editUserSchema } from "@/schemas/users";
 import z from "zod";
 
 export type AddUserFields = z.infer<typeof addUserSchema>;
+export type EditUserFields = z.infer<typeof editUserSchema>;
 
 export type AddUserDto = AddUserFields;
+
+export type EditUserDto = Omit<EditUserFields, "projects"> & {
+    projects: string[] | null;
+};
 
 export interface User {
     id: string;
@@ -11,5 +16,5 @@ export interface User {
     isActivated: boolean;
     isAdmin: boolean;
     trackedHours: number;
-    project: string[];
+    projects: string[];
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, ReactNode, useCallback, useMemo } from "react";
+import React, { FC, ReactNode } from "react";
 import { BaseModal } from "./base-modal";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -8,7 +8,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addUserSchema } from "@/schemas/users";
 import { AddUserFields } from "@/types/users";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
-import { SectionTitleUI } from "../typography";
 import { Input } from "../input";
 import { CustomButton } from "../custom-button";
 import { Switch } from "../switch";

@@ -13,9 +13,6 @@ export async function middleware(req: NextRequest) {
         if (!token) {
             return NextResponse.redirect(new URL("/", req.url));
         }
-        if (currentPath === AppRoute.TRACKING && userType === UserType.ADMIN) {
-            return NextResponse.redirect(new URL(AppRoute.DASHBOARD, req.url));
-        }
         if (currentPath === AppRoute.DASHBOARD && userType === UserType.USER) {
             return NextResponse.redirect(new URL(AppRoute.TRACKING, req.url));
         }
