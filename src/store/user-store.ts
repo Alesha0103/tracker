@@ -1,5 +1,5 @@
 import { Locale } from "@/enums/auth";
-import { User } from "@/types/auth";
+import { User } from "@/types/users";
 import { setCookie } from "cookies-next";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";

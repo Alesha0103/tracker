@@ -55,7 +55,8 @@
         "emailPlaceholder": "Enter email",
         "passwordPlaceholder": "Enter password",
         "isAdmin": "Is this an Admin?",
-        "projectPlaceholder": "Enter name of the project"
+        "projectPlaceholder": "Enter name of the project",
+        "wantToDelete": "Are you sure you want to delete this project?"
     },
     "tables": {
         "noWorkflow": "You don't have any workflow for now.",

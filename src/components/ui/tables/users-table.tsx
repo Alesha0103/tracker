@@ -1,14 +1,9 @@
 import { useTranslations } from "next-intl";
 import React, { FC, useCallback } from "react";
-import { Loader } from "../loader";
-import { CustomButton } from "../custom-button";
-import { TextUI, TitleUI } from "../typography";
 import useModal from "@/hooks/use-modal";
-import { AddUserModal } from "../modals/add-user-modal";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -21,12 +16,10 @@ import { Button } from "../button";
 
 interface Props {
     users: User[];
-    isLoading?: boolean;
 }
 
-export const UsersTable: FC<Props> = ({ users, isLoading }) => {
+export const UsersTable: FC<Props> = ({ users }) => {
     const tTables = useTranslations("tables");
-    const tButtons = useTranslations("buttons");
 
     const { openModal, closeModal, Modal } = useModal();
 

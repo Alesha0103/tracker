@@ -11,10 +11,7 @@ export const getUsers = async (): Promise<User[]> => {
     return data;
 };
 
-export const editUsers = async (
-    id: string,
-    dto: EditUserDto
-): Promise<User[]> => {
+export const editUser = async (id: string, dto: EditUserDto): Promise<User> => {
     const { data } = await api.patch(`/edit-user/${id}/update`, dto);
     return data;
 };

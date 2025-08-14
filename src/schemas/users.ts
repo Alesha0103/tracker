@@ -7,6 +7,6 @@ export const addUserSchema = z.object({
 });
 
 export const editUserSchema = z.object({
-    projects: z.array(z.string()),
+    projects: z.array(z.string().trim().min(5, "requiredField")),
     isAdmin: z.boolean(),
 });

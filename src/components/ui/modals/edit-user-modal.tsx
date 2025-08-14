@@ -1,7 +1,7 @@
 "use client";
 
 import { EditUserFields, User } from "@/types/users";
-import React, { FC, ReactNode, useCallback, useMemo, useState } from "react";
+import React, { FC, ReactNode, useCallback, useState } from "react";
 import { DialogContent, DialogTitle } from "../dialog";
 import { useTranslations } from "next-intl";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
@@ -16,8 +16,8 @@ import { useEditUser } from "@/services/users/mutations";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
 import { BaseModal } from "./base-modal";
-import { Button } from "../button";
 import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Props {
     user: User;
@@ -33,12 +33,21 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
     const tForms = useTranslations("forms");
     const tErrors = useTranslations("serverErrors");
 
+    const defaultProjects = (user.projects || []).filter(
+        (p) => p?.trim() !== ""
+    );
+
+    const [confirmDeleteIndex, setConfirmDeleteIndex] = useState<number | null>(
+        null
+    );
+    const [defaultCount, setDefaultCount] = useState(defaultProjects.length);
+
     const { mutateAsync: editUser } = useEditUser(user.id);
 
     const form = useForm<EditUserFields>({
         resolver: zodResolver(editUserSchema),
         defaultValues: {
-            projects: (user.projects || []).filter((p) => p?.trim() !== ""),
+            projects: defaultProjects,
             isAdmin: user.isAdmin,
         },
     });
@@ -79,6 +88,41 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
         append("");
     }, [fields, append]);
 
+    const renderQuestionLabel = useCallback(
+        (idx: number) => {
+            if (confirmDeleteIndex !== idx) return;
+
+            return (
+                <div className="flex gap-x-2 mt-2 items-center">
+                    <SpanUI className="text-red-500 text-sm">
+                        {tForms("wantToDelete")}
+                    </SpanUI>
+                    <CustomButton
+                        variant="ghost"
+                        type="button"
+                        text={tButtons("yes")}
+                        className="text-slate-400 text-sm underline hover:text-white"
+                        onClick={() => {
+                            remove(idx);
+                            setConfirmDeleteIndex(null);
+                            if (idx < defaultCount) {
+                                setDefaultCount((prev) => prev - 1);
+                            }
+                        }}
+                    />
+                    <CustomButton
+                        variant="ghost"
+                        type="button"
+                        text={tButtons("no")}
+                        className="text-slate-400 text-sm underline hover:text-white"
+                        onClick={() => setConfirmDeleteIndex(null)}
+                    />
+                </div>
+            );
+        },
+        [confirmDeleteIndex]
+    );
+
     return (
         <DialogContent className="bg-midnight max-w-md" aria-describedby={""}>
             <DialogTitle className="text-white text-center">
@@ -115,31 +159,38 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
             <Form {...form}>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     {fields.map((field, idx) => (
-                        <div
-                            key={field.id}
-                            className="flex gap-x-2 items-center"
-                        >
-                            <FormField
-                                control={control}
-                                name={`projects.${idx}`}
-                                render={({ field }) => (
-                                    <FormItem className="flex-1">
-                                        <FormControl>
-                                            <Input
-                                                placeholder={tForms(
-                                                    "projectPlaceholder"
-                                                )}
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <X
-                                className="text-slate-300 hover:cursor-pointer"
-                                onClick={() => remove(idx)}
-                            />
+                        <div key={field.id}>
+                            <div className="flex gap-x-2 items-center">
+                                <FormField
+                                    control={control}
+                                    name={`projects.${idx}`}
+                                    render={({ field }) => (
+                                        <FormItem className="flex-1">
+                                            <FormControl>
+                                                <Input
+                                                    placeholder={tForms(
+                                                        "projectPlaceholder"
+                                                    )}
+                                                    {...field}
+                                                    className={cn(
+                                                        idx < defaultCount &&
+                                                            "pointer-events-none"
+                                                    )}
+                                                    disabled={
+                                                        idx < defaultCount
+                                                    }
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <X
+                                    className="text-slate-300 hover:cursor-pointer"
+                                    onClick={() => setConfirmDeleteIndex(idx)}
+                                />
+                            </div>
+                            {renderQuestionLabel(idx)}
                         </div>
                     ))}
                     <CustomButton
@@ -147,7 +198,7 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
                         variant="ghost"
                         className="h-8 text-blue-500 p-0 hover:underline"
                         onClick={addMoreInput}
-                        text="Add one more project"
+                        text={tButtons("addProject")}
                         isDisabled={projectsWatch.some(
                             (p: string) => !p?.trim()
                         )}

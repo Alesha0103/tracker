@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { EmptyTable } from "../ui/tables/empty-table";
 import { GlobalTitleUI, SpanUI, TextUI } from "../ui/typography";
+import { TrackingTable } from "../ui/tables/tracking-table";
 
 export const Tracking = () => {
     const tUser = useTranslations("general.user");
@@ -32,7 +33,11 @@ export const Tracking = () => {
                     {tUser("trackingDescription")}
                 </TextUI>
             </div>
-            <EmptyTable isLoading={false} />
+            {user?.projects ? (
+                <TrackingTable projects={user.projects} />
+            ) : (
+                <EmptyTable isLoading />
+            )}
         </section>
     );
 };

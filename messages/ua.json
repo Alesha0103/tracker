@@ -55,7 +55,8 @@
         "emailPlaceholder": "Введіть пошту",
         "passwordPlaceholder": "Введіть пароль",
         "isAdmin": "Це адмін?",
-        "projectPlaceholder": "Введіть назву проєкту"
+        "projectPlaceholder": "Введіть назву проєкту",
+        "wantToDelete": "Впевнені що хочете видалити цей проєкт?"
     },
     "tables": {
         "noWorkflow": "Наразі у вас немає жодного робочого процесу.",
