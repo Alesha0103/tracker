@@ -92,6 +92,15 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
         (idx: number) => {
             if (confirmDeleteIndex !== idx) return;
 
+            if (!projectsWatch[idx]?.trim()) {
+                remove(idx);
+                setConfirmDeleteIndex(null);
+                if (idx < defaultCount) {
+                    setDefaultCount((prev) => prev - 1);
+                }
+                return;
+            }
+
             return (
                 <div className="flex gap-x-2 mt-2 items-center">
                     <SpanUI className="text-red-500 text-sm">
