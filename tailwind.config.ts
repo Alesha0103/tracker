@@ -5,6 +5,7 @@ export const basicColors = {
     primary: "#050515",
     secondary: "#08082c",
     midnight: "#05051E",
+    green: "#0d720d",
     "dark-blue": "#08086d",
     "light-blue": "#0F0FA0",
 };

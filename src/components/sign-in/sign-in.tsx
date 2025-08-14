@@ -4,7 +4,6 @@ import React from "react";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormMessage,
@@ -20,13 +19,16 @@ import { useSignIn } from "@/services/auth/mutation";
 import useModal from "@/hooks/use-modal";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AppRoute } from "@/enums/auth";
 import { BaseModal } from "../ui/modals/base-modal";
-import { SectionTitleUI } from "../ui/typography";
+import { SectionTitleUI, TextUI } from "../ui/typography";
 
 export const SignIn = () => {
     const router = useRouter();
+    const params = useSearchParams();
+
+    const isActivatedLink = params.get("activated") === "true";
 
     const tButtons = useTranslations("buttons");
     const tErrors = useTranslations("serverErrors");
@@ -48,7 +50,7 @@ export const SignIn = () => {
 
     const onSubmit: SubmitHandler<SignInFields> = async (formData) => {
         try {
-            const user = await signIn(formData);
+            const { user } = await signIn(formData);
             user?.isAdmin
                 ? router.replace(AppRoute.DASHBOARD)
                 : router.replace(AppRoute.TRACKING);
@@ -82,9 +84,15 @@ export const SignIn = () => {
                         <SectionTitleUI>
                             {tModals("login.title")}
                         </SectionTitleUI>
-                        <FormDescription className="text-sm text-slate-400">
-                            {tModals("login.description")}
-                        </FormDescription>
+                        {isActivatedLink ? (
+                            <TextUI className="text-sm text-slate-300 bg-green rounded-md py-2 px-4">
+                                {tModals("login.isActivated")}
+                            </TextUI>
+                        ) : (
+                            <TextUI className="text-sm text-slate-400">
+                                {tModals("login.description")}
+                            </TextUI>
+                        )}
                         <FormField
                             control={control}
                             name="email"

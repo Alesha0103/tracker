@@ -4,6 +4,7 @@ export enum Locale {
 }
 
 export enum CookieName {
+    ACCESS_TOKEN = "accessToken",
     REFRESH_TOKEN = "refreshToken",
     USER_TYPE = "userType",
 }

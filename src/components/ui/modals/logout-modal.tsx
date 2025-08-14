@@ -39,7 +39,7 @@ export const LogoutModal: FC<Props> = ({ openModal, closeModal }) => {
 
     return (
         <BaseModal
-            title={tModals("isLogout")}
+            title={tModals("isLogout.title")}
             cancelButtonText={tButtons("no")}
             submitButtonText={tButtons("yes")}
             onCancel={closeModal}

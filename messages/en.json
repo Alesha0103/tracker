@@ -29,13 +29,16 @@
     "modals": {
         "error": "An Error Occurred",
         "errorDescription": "Something wrong happened while your process.",
-        "isLogout": "Are you sure you want to logout?",
+        "isLogout": {
+            "title": "Are you sure you want to logout?"
+        },
         "addUser": {
             "title": "Add User"
         },
         "login": {
             "title": "Log In",
-            "description": "Check your inbox. We sent you required creds."
+            "description": "Check your inbox. We sent you required creds.",
+            "isActivated": "Your account is activated, please enter credentials that we sent on your email."
         }
     },
     "formErrors": {
