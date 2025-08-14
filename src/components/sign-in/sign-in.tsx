@@ -85,7 +85,7 @@ export const SignIn = () => {
                             {tModals("login.title")}
                         </SectionTitleUI>
                         {isActivatedLink ? (
-                            <TextUI className="text-sm text-slate-300 bg-green rounded-md py-2 px-4">
+                            <TextUI className="text-sm text-slate-300 bg-app-green rounded-md py-2 px-4">
                                 {tModals("login.isActivated")}
                             </TextUI>
                         ) : (

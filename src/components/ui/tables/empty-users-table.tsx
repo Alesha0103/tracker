@@ -22,22 +22,20 @@ export const EmptyUsersTable: FC<Props> = ({ isLoading }) => {
         );
     }, []);
 
+    if (isLoading) return <Loader />;
+
     return (
         <div className="h-96 w-11/12 mx-auto bg-midnight flex items-center justify-center rounded-md relative">
-            {isLoading ? (
-                <Loader />
-            ) : (
-                <div className="flex flex-col">
-                    <TitleUI>{tTables("noUsers")}</TitleUI>
-                    <TextUI className="text-center mt-2 mb-6">
-                        {tTables("addUserDescription")}
-                    </TextUI>
-                    <CustomButton
-                        text={tButtons("addUser")}
-                        onClick={onAddUserClick}
-                    />
-                </div>
-            )}
+            <div className="flex flex-col">
+                <TitleUI>{tTables("noUsers")}</TitleUI>
+                <TextUI className="text-center mt-2 mb-6">
+                    {tTables("addUserDescription")}
+                </TextUI>
+                <CustomButton
+                    text={tButtons("addUser")}
+                    onClick={onAddUserClick}
+                />
+            </div>
             <Modal />
         </div>
     );

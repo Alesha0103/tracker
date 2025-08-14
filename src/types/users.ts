@@ -10,4 +10,6 @@ export interface User {
     email: string;
     isActivated: boolean;
     isAdmin: boolean;
+    trackedHours: number;
+    project: string[];
 }
