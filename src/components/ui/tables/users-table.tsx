@@ -10,9 +10,17 @@ import {
     TableRow,
 } from "../table";
 import { User } from "@/types/users";
-import { CheckCircle2, SquareMousePointer, XCircle } from "lucide-react";
+import {
+    CheckCircle2,
+    SquareMousePointer,
+    Trash2,
+    XCircle,
+} from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
+import { FilterUsersTable } from "./filter-users-table";
+import { BaseModal } from "../modals/base-modal";
+import { DeleteUserModal } from "../modals/delete-user-modal";
 
 interface Props {
     users: User[];
@@ -36,8 +44,22 @@ export const UsersTable: FC<Props> = ({ users }) => {
         [users]
     );
 
+    const onDeleteClick = useCallback(
+        (id: string) => () => {
+            openModal(
+                <DeleteUserModal
+                    id={id}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                />
+            );
+        },
+        [users]
+    );
+
     return (
         <>
+            <FilterUsersTable />
             <Table className="bg-midnight border-2 border-secondary rounded-md">
                 <TableHeader>
                     <TableRow className="!border-b-2 border-slate-700">
@@ -78,7 +100,9 @@ export const UsersTable: FC<Props> = ({ users }) => {
                             </TableCell>
                             <TableCell className="font-medium text-slate-400">
                                 {user.projects?.length
-                                    ? user.projects?.join(", ")
+                                    ? user.projects
+                                          ?.map((p) => p.name)
+                                          .join(", ")
                                     : "--"}
                             </TableCell>
                             <TableCell>
@@ -110,10 +134,14 @@ export const UsersTable: FC<Props> = ({ users }) => {
                             <TableCell className="text-center text-slate-400">
                                 {user.trackedHours}
                             </TableCell>
-                            <TableCell>
+                            <TableCell className="flex gap-x-3 justify-center">
                                 <SquareMousePointer
-                                    className="text-slate-400 mx-auto hover:cursor-pointer hover:text-white"
+                                    className="text-slate-400 hover:cursor-pointer hover:text-white"
                                     onClick={onEditClick(user)}
+                                />
+                                <Trash2
+                                    className="text-slate-400 hover:cursor-pointer hover:text-white"
+                                    onClick={onDeleteClick(user.id)}
                                 />
                             </TableCell>
                         </TableRow>

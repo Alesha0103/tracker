@@ -9,13 +9,13 @@ import {
     TableHeader,
     TableRow,
 } from "../table";
-import { User } from "@/types/users";
+import { Projects, User } from "@/types/users";
 import { CheckCircle2, SquareMousePointer, XCircle } from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
 
 interface Props {
-    projects: string[];
+    projects: Projects[];
 }
 
 export const TrackingTable: FC<Props> = ({ projects }) => {

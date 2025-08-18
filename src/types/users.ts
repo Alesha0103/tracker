@@ -10,11 +10,18 @@ export type EditUserDto = Omit<EditUserFields, "projects"> & {
     projects: string[] | null;
 };
 
+export interface Projects {
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    trackedHours: number;
+}
+
 export interface User {
     id: string;
     email: string;
     isActivated: boolean;
     isAdmin: boolean;
     trackedHours: number;
-    projects: string[];
+    projects: Projects[];
 }

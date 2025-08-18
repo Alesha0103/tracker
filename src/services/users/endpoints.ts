@@ -15,3 +15,7 @@ export const editUser = async (id: string, dto: EditUserDto): Promise<User> => {
     const { data } = await api.patch(`/edit-user/${id}/update`, dto);
     return data;
 };
+
+export const deleteUser = async (id: string) => {
+    await api.delete(`/delete-user/${id}/:_delete`);
+};
