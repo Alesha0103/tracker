@@ -19,6 +19,8 @@ import { BaseModal } from "./base-modal";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// TODO: if you are admin you can't say to the system that you are user now!!!
+
 interface Props {
     user: User;
     openModal: (element: ReactNode) => void;

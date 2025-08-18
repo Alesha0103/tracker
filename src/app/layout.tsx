@@ -13,6 +13,7 @@ import {
 import { QueryProvider } from "@/components/query-provider";
 import { Suspense } from "react";
 import { Loader } from "@/components/ui/loader";
+import { HeroSection } from "@/components/ui/hero-section";
 
 export const metadata: Metadata = {
     title: "Time Tracker",
@@ -32,6 +33,7 @@ const RootLayout = async ({
                     <QueryProvider>
                         <Suspense fallback={<Loader />}>
                             <Header />
+                            <HeroSection />
                             <main className="flex-1 flex flex-col h-fit w-full mx-auto">
                                 {children}
                             </main>
