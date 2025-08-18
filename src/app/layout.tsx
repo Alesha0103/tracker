@@ -33,7 +33,6 @@ const RootLayout = async ({
                     <QueryProvider>
                         <Suspense fallback={<Loader />}>
                             <Header />
-                            <HeroSection />
                             <main className="flex-1 flex flex-col h-fit w-full mx-auto">
                                 {children}
                             </main>

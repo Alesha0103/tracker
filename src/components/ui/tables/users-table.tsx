@@ -10,16 +10,10 @@ import {
     TableRow,
 } from "../table";
 import { User } from "@/types/users";
-import {
-    CheckCircle2,
-    SquareMousePointer,
-    Trash2,
-    XCircle,
-} from "lucide-react";
+import { CheckCircle2, Pencil, Trash2, XCircle } from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
 import { FilterUsersTable } from "./filter-users-table";
-import { BaseModal } from "../modals/base-modal";
 import { DeleteUserModal } from "../modals/delete-user-modal";
 
 interface Props {
@@ -135,7 +129,7 @@ export const UsersTable: FC<Props> = ({ users }) => {
                                 {user.trackedHours}
                             </TableCell>
                             <TableCell className="flex gap-x-3 justify-center">
-                                <SquareMousePointer
+                                <Pencil
                                     className="text-slate-400 hover:cursor-pointer hover:text-white"
                                     onClick={onEditClick(user)}
                                 />

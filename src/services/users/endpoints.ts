@@ -17,5 +17,5 @@ export const editUser = async (id: string, dto: EditUserDto): Promise<User> => {
 };
 
 export const deleteUser = async (id: string) => {
-    await api.delete(`/delete-user/${id}/:_delete`);
+    await api.delete(`/delete-user/${id}/delete`);
 };

@@ -9,112 +9,87 @@ import {
     TableHeader,
     TableRow,
 } from "../table";
-import { Projects, User } from "@/types/users";
-import { CheckCircle2, SquareMousePointer, XCircle } from "lucide-react";
-import { EditUserModal } from "../modals/edit-user-modal";
-import { Button } from "../button";
+import { Project } from "@/types/users";
+import { Pencil, SquareMousePointer } from "lucide-react";
+import { TrackingModal } from "../modals/tracking-modal";
 
 interface Props {
-    projects: Projects[];
+    projects: Project[];
 }
 
 export const TrackingTable: FC<Props> = ({ projects }) => {
-    console.log("projects", projects);
     const tTables = useTranslations("tables");
 
     const { openModal, closeModal, Modal } = useModal();
 
+    const onTrackingClick = useCallback(
+        (project: Project) => () => {
+            openModal(
+                <TrackingModal
+                    project={project}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                />
+            );
+        },
+        [projects]
+    );
+
     return (
         <>
+            <Table className="bg-midnight border-2 border-secondary rounded-md">
+                <TableHeader>
+                    <TableRow className="!border-b-2 border-slate-700">
+                        <TableHead className="text-white">
+                            {tTables("trackingTable.name")}
+                        </TableHead>
+                        <TableHead className="text-white text-center">
+                            {tTables("trackingTable.createdAt")}
+                        </TableHead>
+                        <TableHead className="text-white text-center">
+                            {tTables("trackingTable.updatedAt")}
+                        </TableHead>
+                        <TableHead className="text-white text-center">
+                            {tTables("trackingTable.hours")}
+                        </TableHead>
+                        <TableHead className="text-white text-center">
+                            {tTables("trackingTable.action")}
+                        </TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {projects.map((project) => (
+                        <TableRow
+                            key={project.name}
+                            className="border-b-2 border-secondary"
+                        >
+                            <TableCell className="font-medium text-slate-400">
+                                {project.name}
+                            </TableCell>
+                            <TableCell className="font-medium text-slate-400 text-center">
+                                {project.createdAt}
+                            </TableCell>
+                            <TableCell className="font-medium text-slate-400 text-center">
+                                {project.updatedAt}
+                            </TableCell>
+                            <TableCell className="font-medium text-slate-400 text-center">
+                                {project.trackedHours || 0}
+                            </TableCell>
+                            <TableCell className="flex gap-x-3 justify-center">
+                                <Pencil
+                                    className="text-slate-400 hover:cursor-pointer hover:text-white"
+                                    // onClick={onEditClick(user)}
+                                />
+                                <SquareMousePointer
+                                    className="text-slate-400 hover:cursor-pointer hover:text-white"
+                                    onClick={onTrackingClick(project)}
+                                />
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
             <Modal />
         </>
     );
-
-    // return (
-    //     <>
-    //         <Table className="bg-midnight border-2 border-secondary rounded-md">
-    //             <TableHeader>
-    //                 <TableRow className="!border-b-2 border-slate-700">
-    //                     <TableHead className="text-white">
-    //                         {tTables("usersTable.email")}
-    //                     </TableHead>
-    //                     <TableHead className="text-white">
-    //                         {tTables("usersTable.projects")}
-    //                     </TableHead>
-    //                     <TableHead className="text-white text-center">
-    //                         {tTables("usersTable.admin")}
-    //                     </TableHead>
-    //                     <TableHead className="text-white text-center">
-    //                         {tTables("usersTable.activated")}
-    //                     </TableHead>
-    //                     <TableHead className="text-white text-center">
-    //                         {tTables("usersTable.hours")}
-    //                     </TableHead>
-    //                     <TableHead className="text-white text-center">
-    //                         {tTables("usersTable.action")}
-    //                     </TableHead>
-    //                 </TableRow>
-    //             </TableHeader>
-    //             <TableBody>
-    //                 {users.map((user) => (
-    //                     <TableRow
-    //                         key={user.email}
-    //                         className="border-b-2 border-secondary"
-    //                     >
-    //                         <TableCell>
-    //                             <Button
-    //                                 variant="ghost"
-    //                                 className="p-0 h-fit font-medium text-slate-400 hover:cursor-pointer hover:underline"
-    //                                 onClick={onEditClick(user)}
-    //                             >
-    //                                 {user.email}
-    //                             </Button>
-    //                         </TableCell>
-    //                         <TableCell className="font-medium text-slate-400">
-    //                             {user.projects?.length
-    //                                 ? user.projects?.join(", ")
-    //                                 : "--"}
-    //                         </TableCell>
-    //                         <TableCell>
-    //                             {user.isAdmin ? (
-    //                                 <CheckCircle2
-    //                                     className="text-green-500  mx-auto"
-    //                                     size={20}
-    //                                 />
-    //                             ) : (
-    //                                 <XCircle
-    //                                     className="text-red-500  mx-auto"
-    //                                     size={20}
-    //                                 />
-    //                             )}
-    //                         </TableCell>
-    //                         <TableCell className="text-center">
-    //                             {user.isActivated ? (
-    //                                 <CheckCircle2
-    //                                     className="text-green-500 text-center mx-auto"
-    //                                     size={20}
-    //                                 />
-    //                             ) : (
-    //                                 <XCircle
-    //                                     className="text-red-500  mx-auto"
-    //                                     size={20}
-    //                                 />
-    //                             )}
-    //                         </TableCell>
-    //                         <TableCell className="text-center text-slate-400">
-    //                             {user.trackedHours}
-    //                         </TableCell>
-    //                         <TableCell>
-    //                             <SquareMousePointer
-    //                                 className="text-slate-400 mx-auto hover:cursor-pointer hover:text-white"
-    //                                 onClick={onEditClick(user)}
-    //                             />
-    //                         </TableCell>
-    //                     </TableRow>
-    //                 ))}
-    //             </TableBody>
-    //         </Table>
-    //         <Modal />
-    //     </>
-    // );
 };

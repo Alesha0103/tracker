@@ -10,3 +10,8 @@ export const editUserSchema = z.object({
     projects: z.array(z.string().trim().min(5, "requiredField")),
     isAdmin: z.boolean(),
 });
+
+export const trackingSchema = z.object({
+    date: z.string(),
+    hours: z.string().min(1, "requiredField"),
+});
