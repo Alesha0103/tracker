@@ -126,7 +126,7 @@ export const UsersTable: FC<Props> = ({ users }) => {
                                 )}
                             </TableCell>
                             <TableCell className="text-center text-slate-400">
-                                {user.trackedHours}
+                                {user.totalHours}
                             </TableCell>
                             <TableCell className="flex gap-x-3 justify-center">
                                 <Pencil

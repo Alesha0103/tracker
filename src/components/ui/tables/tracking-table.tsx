@@ -73,7 +73,7 @@ export const TrackingTable: FC<Props> = ({ projects }) => {
                                 {project.updatedAt}
                             </TableCell>
                             <TableCell className="font-medium text-slate-400 text-center">
-                                {project.trackedHours || 0}
+                                {project.hours || 0}
                             </TableCell>
                             <TableCell className="flex gap-x-3 justify-center">
                                 <Pencil

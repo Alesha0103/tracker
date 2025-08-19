@@ -147,7 +147,7 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
                     {tTables("usersTable.hours")}
                     {": "}
                     <SpanUI className="text-slate-200">
-                        {user.trackedHours}
+                        {user.totalHours}
                     </SpanUI>
                 </TextUI>
                 <TextUI>

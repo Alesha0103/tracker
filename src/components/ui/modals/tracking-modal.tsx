@@ -12,6 +12,12 @@ import { Input } from "../input";
 import { FormDatePicker } from "../date-picker";
 import { CustomButton } from "../custom-button";
 import { handleHoursChange } from "@/lib/utils";
+import { useTrackingHours } from "@/services/users/mutations";
+import dayjs from "dayjs";
+import { useUserStore } from "@/store/user-store";
+import { AxiosError } from "axios";
+import { ApiErrorResponse } from "@/types/types";
+import { BaseModal } from "./base-modal";
 
 interface Props {
     project: Project;
@@ -27,6 +33,11 @@ export const TrackingModal: FC<Props> = ({
     const tButtons = useTranslations("buttons");
     const tModals = useTranslations("modals");
     const tForms = useTranslations("forms");
+    const tErrors = useTranslations("serverErrors");
+
+    const { mutateAsync: trackHours } = useTrackingHours();
+
+    const { user } = useUserStore();
 
     const form = useForm<TrackingHoursFields>({
         resolver: zodResolver(trackingSchema),
@@ -38,10 +49,33 @@ export const TrackingModal: FC<Props> = ({
     const { control, handleSubmit } = form;
 
     const onSubmit: SubmitHandler<TrackingHoursFields> = async (formData) => {
+        if (!user) return;
+
         try {
-            console.log("formData", formData);
+            await trackHours({
+                userId: user.id,
+                projectId: project.id,
+                date: dayjs(formData.date).format("YYYY-MM-DD"),
+                hours: formData.hours,
+            });
             closeModal();
-        } catch (err) {}
+        } catch (err) {
+            const error = err as AxiosError<ApiErrorResponse>;
+            const message = error.response?.data?.message;
+            openModal(
+                <BaseModal
+                    title={tModals("error")}
+                    submitButtonText={tButtons("ok")}
+                    description={
+                        tErrors.has(message as string)
+                            ? tErrors(message as string)
+                            : tModals("errorDescription")
+                    }
+                    onSubmit={closeModal}
+                    submitButtonClassName="bg-red-500 hover:bg-red-400"
+                />
+            );
+        }
     };
 
     return (

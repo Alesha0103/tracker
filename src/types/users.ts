@@ -11,14 +11,17 @@ export type EditUserDto = Omit<EditUserFields, "projects"> & {
     projects: string[] | null;
 };
 
-export type TrackingHoursDto = TrackingHoursFields;
+export type TrackingHoursDto = TrackingHoursFields & {
+    userId: string;
+    projectId: string;
+};
 
 export interface Project {
     id: string;
     name: string;
     createdAt: string;
     updatedAt: string;
-    trackedHours: number;
+    hours: number;
 }
 
 export interface User {
@@ -26,6 +29,6 @@ export interface User {
     email: string;
     isActivated: boolean;
     isAdmin: boolean;
-    trackedHours: number;
+    totalHours: number;
     projects: Project[];
 }
