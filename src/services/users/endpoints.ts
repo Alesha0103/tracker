@@ -1,5 +1,11 @@
 import { api } from "../../configs/api";
-import { AddUserDto, EditUserDto, User } from "@/types/users";
+import {
+    AddUserDto,
+    EditUserDto,
+    Project,
+    TrackingHoursDto,
+    User,
+} from "@/types/users";
 
 export const addUser = async (dto: AddUserDto): Promise<User> => {
     const { data } = await api.post("/registration", dto);
@@ -13,5 +19,19 @@ export const getUsers = async (): Promise<User[]> => {
 
 export const editUser = async (id: string, dto: EditUserDto): Promise<User> => {
     const { data } = await api.patch(`/edit-user/${id}/update`, dto);
+    return data;
+};
+
+export const deleteUser = async (id: string) => {
+    await api.delete(`/delete-user/${id}/delete`);
+};
+
+export const trackingHours = async (dto: TrackingHoursDto): Promise<User> => {
+    const { data } = await api.patch("/tracking", dto);
+    return data;
+};
+
+export const getProjects = async (): Promise<Project[]> => {
+    const { data } = await api.get("/projects");
     return data;
 };

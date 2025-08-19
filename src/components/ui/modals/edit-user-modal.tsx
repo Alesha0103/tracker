@@ -19,6 +19,8 @@ import { BaseModal } from "./base-modal";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// TODO: if you are admin you can't say to the system that you are user now!!!
+
 interface Props {
     user: User;
     openModal: (element: ReactNode) => void;
@@ -33,9 +35,8 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
     const tForms = useTranslations("forms");
     const tErrors = useTranslations("serverErrors");
 
-    const defaultProjects = (user.projects || []).filter(
-        (p) => p?.trim() !== ""
-    );
+    const defaultProjects =
+        user.projects.filter((p) => !p.isDisabled)?.map((p) => p.name) || [];
 
     const [confirmDeleteIndex, setConfirmDeleteIndex] = useState<number | null>(
         null
@@ -147,7 +148,7 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
                     {tTables("usersTable.hours")}
                     {": "}
                     <SpanUI className="text-slate-200">
-                        {user.trackedHours}
+                        {user.totalHours}
                     </SpanUI>
                 </TextUI>
                 <TextUI>

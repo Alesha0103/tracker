@@ -41,6 +41,12 @@
         "editUser": {
             "title": "Редагування юзера"
         },
+        "deleteUser": {
+            "title": "Ви впевнені що хочете видалити цього юзера?"
+        },
+        "timeTracking": {
+            "title": "Відстеження часу"
+        },
         "login": {
             "title": "Вхід у систему",
             "description": "Перевірте вашу пошту. Ми відправили вам пароль для входу.",
@@ -54,8 +60,10 @@
     "forms": {
         "emailPlaceholder": "Введіть пошту",
         "passwordPlaceholder": "Введіть пароль",
-        "isAdmin": "Це адмін?",
         "projectPlaceholder": "Введіть назву проєкту",
+        "datePlaceholder": "Введіть дату",
+        "hoursPlaceholder": "Введіть робочі години",
+        "isAdmin": "Це адмін?",
         "wantToDelete": "Впевнені що хочете видалити цей проєкт?"
     },
     "tables": {
@@ -67,6 +75,13 @@
             "projects": "Проєкти",
             "admin": "Адмін",
             "activated": "Акаунт активовано",
+            "hours": "Затрекані години",
+            "action": "Операція"
+        },
+        "trackingTable": {
+            "name": "Ім'я проєкту",
+            "createdAt": "Створено",
+            "updatedAt": "Оновлено",
             "hours": "Затрекані години",
             "action": "Операція"
         }

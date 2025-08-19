@@ -13,6 +13,7 @@ import {
 import { QueryProvider } from "@/components/query-provider";
 import { Suspense } from "react";
 import { Loader } from "@/components/ui/loader";
+import { HeroSection } from "@/components/ui/hero-section";
 
 export const metadata: Metadata = {
     title: "Time Tracker",

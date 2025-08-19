@@ -9,10 +9,12 @@ import {
     TableHeader,
     TableRow,
 } from "../table";
-import { User } from "@/types/users";
-import { CheckCircle2, SquareMousePointer, XCircle } from "lucide-react";
+import { Project, User } from "@/types/users";
+import { CheckCircle2, Pencil, Trash2, XCircle } from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
+import { FilterUsersTable } from "./filter-users-table";
+import { DeleteUserModal } from "../modals/delete-user-modal";
 
 interface Props {
     users: User[];
@@ -36,8 +38,30 @@ export const UsersTable: FC<Props> = ({ users }) => {
         [users]
     );
 
+    const onDeleteClick = useCallback(
+        (id: string) => () => {
+            openModal(
+                <DeleteUserModal
+                    id={id}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                />
+            );
+        },
+        [users]
+    );
+
+    const getProjectsList = (projects: Project[]): string => {
+        const projectList = projects
+            ?.filter((p) => !p.isDisabled)
+            ?.map((p) => p.name)
+            .join(", ");
+        return !!projectList ? projectList : "--";
+    };
+
     return (
         <>
+            <FilterUsersTable />
             <Table className="bg-midnight border-2 border-secondary rounded-md">
                 <TableHeader>
                     <TableRow className="!border-b-2 border-slate-700">
@@ -77,9 +101,7 @@ export const UsersTable: FC<Props> = ({ users }) => {
                                 </Button>
                             </TableCell>
                             <TableCell className="font-medium text-slate-400">
-                                {user.projects?.length
-                                    ? user.projects?.join(", ")
-                                    : "--"}
+                                {getProjectsList(user.projects)}
                             </TableCell>
                             <TableCell>
                                 {user.isAdmin ? (
@@ -108,12 +130,16 @@ export const UsersTable: FC<Props> = ({ users }) => {
                                 )}
                             </TableCell>
                             <TableCell className="text-center text-slate-400">
-                                {user.trackedHours}
+                                {user.totalHours}
                             </TableCell>
-                            <TableCell>
-                                <SquareMousePointer
-                                    className="text-slate-400 mx-auto hover:cursor-pointer hover:text-white"
+                            <TableCell className="flex gap-x-3 justify-center">
+                                <Pencil
+                                    className="text-slate-400 hover:cursor-pointer hover:text-white"
                                     onClick={onEditClick(user)}
+                                />
+                                <Trash2
+                                    className="text-slate-400 hover:cursor-pointer hover:text-white"
+                                    onClick={onDeleteClick(user.id)}
                                 />
                             </TableCell>
                         </TableRow>

@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    text: string;
+    text: string | ReactNode;
     className?: string;
     isDisabled?: boolean;
     variant?: "default" | "ghost";

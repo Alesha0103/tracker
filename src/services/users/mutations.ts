@@ -1,12 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addUser, editUser } from "./endpoints";
+import { addUser, deleteUser, editUser, trackingHours } from "./endpoints";
 import { EditUserDto } from "@/types/users";
 import { useUserStore } from "@/store/user-store";
 
 export const useAddUser = () => {
+    const queryClient = useQueryClient();
+
     return useMutation({
         mutationFn: addUser,
-        onSuccess: () => {},
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["get-users"] });
+        },
         mutationKey: ["add-user"],
         retry: false,
     });
@@ -23,6 +27,33 @@ export const useEditUser = (id: string) => {
             queryClient.invalidateQueries({ queryKey: ["get-users"] });
         },
         mutationKey: ["edit-user"],
+        retry: false,
+    });
+};
+
+export const useDeleteUser = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: deleteUser,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["get-users"] });
+        },
+        mutationKey: ["delete-user"],
+        retry: false,
+    });
+};
+
+export const useTrackingHours = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: trackingHours,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["get-users"] });
+            queryClient.invalidateQueries({ queryKey: ["get-projects"] });
+        },
+        mutationKey: ["tracking"],
         retry: false,
     });
 };
