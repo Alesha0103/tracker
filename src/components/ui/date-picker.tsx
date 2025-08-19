@@ -1,12 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "./input";
 import { useTranslations } from "next-intl";
-import { FC, forwardRef, useState } from "react";
+import { FC, forwardRef } from "react";
 import DatePicker from "react-datepicker";
+import { uk } from "date-fns/locale";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { useUserStore } from "@/store/user-store";
+import { Locale } from "@/enums/auth";
 
 interface Props {
     value: Date | null;
@@ -29,7 +31,7 @@ CustomInput.displayName = "CustomInput";
 
 export const FormDatePicker: FC<Props> = ({ value, onChange }) => {
     const tForms = useTranslations("forms");
-    const [date, setDate] = useState<Date | null>(new Date());
+    const { locale } = useUserStore();
 
     return (
         <DatePicker
@@ -41,6 +43,8 @@ export const FormDatePicker: FC<Props> = ({ value, onChange }) => {
             }
             placeholderText={tForms("datePlaceholder")}
             dateFormat="YYYY-d-MM"
+            maxDate={new Date()}
+            locale={locale === Locale.UA ? uk : ""}
         />
     );
 };
