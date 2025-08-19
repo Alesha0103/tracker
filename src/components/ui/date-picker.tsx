@@ -42,7 +42,7 @@ export const FormDatePicker: FC<Props> = ({ value, onChange }) => {
                 <CustomInput placeholder={tForms("datePlaceholder")} />
             }
             placeholderText={tForms("datePlaceholder")}
-            dateFormat="YYYY-d-MM"
+            dateFormat="YYYY-MM-d"
             maxDate={new Date()}
             locale={locale === Locale.UA ? uk : ""}
         />

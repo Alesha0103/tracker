@@ -5,15 +5,16 @@ import React from "react";
 import { EmptyTable } from "../ui/tables/empty-table";
 import { TrackingTable } from "../ui/tables/tracking-table";
 import { HeroSection } from "../ui/hero-section";
+import { useGetProjects } from "@/services/users/query";
 
 export const Tracking = () => {
-    const { user } = useUserStore();
+    const { data } = useGetProjects();
 
     return (
         <section className="container flex flex-col p-4 sm:p-10">
             <HeroSection />
-            {user?.projects?.length ? (
-                <TrackingTable projects={user.projects} />
+            {data?.length ? (
+                <TrackingTable projects={data} />
             ) : (
                 <EmptyTable isLoading={false} />
             )}

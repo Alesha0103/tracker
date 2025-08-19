@@ -35,7 +35,8 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
     const tForms = useTranslations("forms");
     const tErrors = useTranslations("serverErrors");
 
-    const defaultProjects = user.projects.map((p) => p.name) || [];
+    const defaultProjects =
+        user.projects.filter((p) => !p.isDisabled)?.map((p) => p.name) || [];
 
     const [confirmDeleteIndex, setConfirmDeleteIndex] = useState<number | null>(
         null

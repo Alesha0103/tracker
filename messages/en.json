@@ -76,14 +76,14 @@
             "projects": "Project",
             "admin": "Admin",
             "activated": "Activated",
-            "hours": "Tracked hours",
+            "hours": "Total hours",
             "action": "Action"
         },
         "trackingTable": {
             "name": "Project name",
             "createdAt": "Created at",
             "updatedAt": "Updated at",
-            "hours": "Tracked hours",
+            "hours": "Total hours",
             "action": "Action"
         }
     }

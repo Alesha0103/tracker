@@ -9,7 +9,7 @@ import {
     TableHeader,
     TableRow,
 } from "../table";
-import { User } from "@/types/users";
+import { Project, User } from "@/types/users";
 import { CheckCircle2, Pencil, Trash2, XCircle } from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
@@ -50,6 +50,14 @@ export const UsersTable: FC<Props> = ({ users }) => {
         },
         [users]
     );
+
+    const getProjectsList = (projects: Project[]): string => {
+        const projectList = projects
+            ?.filter((p) => !p.isDisabled)
+            ?.map((p) => p.name)
+            .join(", ");
+        return !!projectList ? projectList : "--";
+    };
 
     return (
         <>
@@ -93,11 +101,7 @@ export const UsersTable: FC<Props> = ({ users }) => {
                                 </Button>
                             </TableCell>
                             <TableCell className="font-medium text-slate-400">
-                                {user.projects?.length
-                                    ? user.projects
-                                          ?.map((p) => p.name)
-                                          .join(", ")
-                                    : "--"}
+                                {getProjectsList(user.projects)}
                             </TableCell>
                             <TableCell>
                                 {user.isAdmin ? (

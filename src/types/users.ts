@@ -22,6 +22,7 @@ export interface Project {
     createdAt: string;
     updatedAt: string;
     hours: number;
+    isDisabled: boolean;
 }
 
 export interface User {
