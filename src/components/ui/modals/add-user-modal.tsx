@@ -27,7 +27,7 @@ export const AddUserModal: FC<Props> = ({ openModal, closeModal }) => {
     const tForms = useTranslations("forms");
     const tErrors = useTranslations("serverErrors");
 
-    const { mutateAsync: addUser } = useAddUser();
+    const { mutateAsync: addUser, isPending } = useAddUser();
 
     const form = useForm<AddUserFields>({
         resolver: zodResolver(addUserSchema),
@@ -131,6 +131,7 @@ export const AddUserModal: FC<Props> = ({ openModal, closeModal }) => {
                             type="submit"
                             text={tButtons("submit")}
                             className="w-full"
+                            isPending={isPending}
                         />
                     </div>
                 </form>

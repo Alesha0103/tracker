@@ -33,3 +33,8 @@ export interface User {
     totalHours: number;
     projects: Project[];
 }
+
+export interface UsersResponse {
+    users: User[];
+    pages: number;
+}

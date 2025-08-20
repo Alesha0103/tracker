@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
 import { Input } from "../input";
 import { FormDatePicker } from "../date-picker";
 import { CustomButton } from "../custom-button";
-import { handleHoursChange } from "@/lib/utils";
+import { handleHoursChange } from "@/utils";
 import { useTrackingHours } from "@/services/users/mutations";
 import dayjs from "dayjs";
 import { useUserStore } from "@/store/user-store";

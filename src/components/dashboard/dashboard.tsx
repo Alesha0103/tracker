@@ -12,8 +12,8 @@ export const Dashboard = () => {
     return (
         <section className="container flex flex-col p-4 sm:p-10">
             <HeroSection />
-            {data?.length ? (
-                <UsersTable users={data} />
+            {data?.users?.length ? (
+                <UsersTable data={data} />
             ) : (
                 <EmptyUsersTable isLoading={isPending} />
             )}

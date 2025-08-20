@@ -1,10 +1,12 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils";
 import React, { FC, ReactNode } from "react";
+import { Loader } from "./loader";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     text: string | ReactNode;
     className?: string;
     isDisabled?: boolean;
+    isPending?: boolean;
     variant?: "default" | "ghost";
     onClick?: () => void;
 }
@@ -12,6 +14,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const CustomButton: FC<Props> = ({
     text,
     isDisabled,
+    isPending,
     className,
     variant = "default",
     type = "button",
@@ -42,8 +45,8 @@ export const CustomButton: FC<Props> = ({
             type={type}
             onClick={handleClick}
             className={cn(
-                "text-white text-sm rounded-sm px-4 py-2 h-fit bg-secondary",
-                isDisabled
+                "text-white text-sm rounded-sm px-4 py-2 h-fit bg-secondary relative",
+                isDisabled || isPending
                     ? "bg-gray-800 text-slate-500 pointer-event-none"
                     : "hover:bg-dark-blue transition-colors duration-200",
                 className
@@ -51,6 +54,13 @@ export const CustomButton: FC<Props> = ({
             disabled={isDisabled}
         >
             {text}
+            {isPending && (
+                <Loader
+                    size={20}
+                    borderSize={2}
+                    className="right-7 translate-x-full"
+                />
+            )}
         </button>
     );
 };

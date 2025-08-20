@@ -5,6 +5,7 @@ import {
     Project,
     TrackingHoursDto,
     User,
+    UsersResponse,
 } from "@/types/users";
 
 export const addUser = async (dto: AddUserDto): Promise<User> => {
@@ -12,7 +13,7 @@ export const addUser = async (dto: AddUserDto): Promise<User> => {
     return data;
 };
 
-export const getUsers = async (): Promise<User[]> => {
+export const getUsers = async (): Promise<UsersResponse> => {
     const { data } = await api.get("/users");
     return data;
 };

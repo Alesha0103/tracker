@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import React, { FC, useCallback } from "react";
 import useModal from "@/hooks/use-modal";
@@ -9,18 +11,22 @@ import {
     TableHeader,
     TableRow,
 } from "../table";
-import { Project, User } from "@/types/users";
+import { Project, User, UsersResponse } from "@/types/users";
 import { CheckCircle2, Pencil, Trash2, XCircle } from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
 import { FilterUsersTable } from "./filter-users-table";
 import { DeleteUserModal } from "../modals/delete-user-modal";
+import { TablePagination } from "./table-pagination";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
-    users: User[];
+    data: UsersResponse;
 }
 
-export const UsersTable: FC<Props> = ({ users }) => {
+export const UsersTable: FC<Props> = ({ data: { users, pages } }) => {
+    const params = useSearchParams();
+    const currentPage = params.get("page");
     const tTables = useTranslations("tables");
 
     const { openModal, closeModal, Modal } = useModal();
@@ -146,6 +152,10 @@ export const UsersTable: FC<Props> = ({ users }) => {
                     ))}
                 </TableBody>
             </Table>
+            <TablePagination
+                pages={pages}
+                currentPage={Number(currentPage || 1)}
+            />
             <Modal />
         </>
     );
