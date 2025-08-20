@@ -5,9 +5,12 @@ import { EmptyUsersTable } from "../ui/tables/empty-users-table";
 import { useGetUsers } from "@/services/users/query";
 import { UsersTable } from "../ui/tables/users-table";
 import { HeroSection } from "../ui/hero-section";
+import { useSearchParams } from "next/navigation";
 
 export const Dashboard = () => {
-    const { data, isPending } = useGetUsers();
+    const params = useSearchParams();
+    const page = Number(params.get("page")) || 1;
+    const { data, isPending } = useGetUsers(page);
 
     return (
         <section className="container flex flex-col p-4 sm:p-10">

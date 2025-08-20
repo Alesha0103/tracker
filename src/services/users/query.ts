@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProjects, getUsers } from "./endpoints";
 
-export const useGetUsers = () => {
+export const useGetUsers = (page: number) => {
     return useQuery({
         retry: false,
-        queryFn: getUsers,
-        queryKey: ["get-users"],
+        queryFn: () => getUsers(page),
+        queryKey: ["get-users", page],
         refetchOnWindowFocus: true,
     });
 };

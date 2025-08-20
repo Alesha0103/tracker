@@ -13,8 +13,8 @@ export const addUser = async (dto: AddUserDto): Promise<User> => {
     return data;
 };
 
-export const getUsers = async (): Promise<UsersResponse> => {
-    const { data } = await api.get("/users");
+export const getUsers = async (page: number): Promise<UsersResponse> => {
+    const { data } = await api.get(`/users?page=${page}`);
     return data;
 };
 

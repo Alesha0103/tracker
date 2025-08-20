@@ -24,9 +24,9 @@ interface Props {
     data: UsersResponse;
 }
 
-export const UsersTable: FC<Props> = ({ data: { users, pages } }) => {
-    const params = useSearchParams();
-    const currentPage = params.get("page");
+export const UsersTable: FC<Props> = ({
+    data: { users, pages, currentPage },
+}) => {
     const tTables = useTranslations("tables");
 
     const { openModal, closeModal, Modal } = useModal();
