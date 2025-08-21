@@ -13,8 +13,3 @@ export enum AppRoute {
     TRACKING = "/tracking",
     DASHBOARD = "/dashboard",
 }
-
-export enum UserType {
-    USER = "USER",
-    ADMIN = "ADMIN",
-}

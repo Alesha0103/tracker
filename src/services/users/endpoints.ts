@@ -5,6 +5,7 @@ import {
     Project,
     TrackingHoursDto,
     User,
+    UsersDto,
     UsersResponse,
 } from "@/types/users";
 
@@ -13,8 +14,8 @@ export const addUser = async (dto: AddUserDto): Promise<User> => {
     return data;
 };
 
-export const getUsers = async (page: number): Promise<UsersResponse> => {
-    const { data } = await api.get(`/users?page=${page}`);
+export const getUsers = async (dto: UsersDto): Promise<UsersResponse> => {
+    const { data } = await api.post("/users", dto);
     return data;
 };
 

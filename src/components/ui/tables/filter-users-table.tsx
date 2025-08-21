@@ -1,12 +1,22 @@
 "use client";
 import useModal from "@/hooks/use-modal";
-import React, { useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import { AddUserModal } from "../modals/add-user-modal";
 import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
+import { FilterUsers } from "@/types/users";
+import { Input } from "../input";
+import { TitleUI } from "../typography";
+import { Switch } from "../switch";
+import { UsersFilterModal } from "../modals/users-filter-modal";
 
-export const FilterUsersTable = () => {
+interface Props {
+    filterUsers: (data: FilterUsers) => void;
+}
+
+export const FilterUsersTable: FC<Props> = ({ filterUsers }) => {
     const tButtons = useTranslations("buttons");
+    const tForms = useTranslations("forms");
 
     const { openModal, closeModal, Modal } = useModal();
 
@@ -16,9 +26,22 @@ export const FilterUsersTable = () => {
         );
     }, []);
 
+    const onFilterClick = useCallback(() => {
+        openModal(
+            <UsersFilterModal
+                closeModal={closeModal}
+                filterUsers={filterUsers}
+            />
+        );
+    }, []);
+
     return (
         <div className="flex mb-2 justify-between">
-            <div className="flex-1"></div>
+            <CustomButton
+                text={tButtons("filter")}
+                onClick={onFilterClick}
+                className="w-28"
+            />
             <CustomButton text={tButtons("addUser")} onClick={onAddUserClick} />
             <Modal />
         </div>

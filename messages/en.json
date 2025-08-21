@@ -27,7 +27,8 @@
         "ok": "Ok",
         "yes": "Yes",
         "no": "No",
-        "addProject": "Add one more project"
+        "addProject": "Add one more project",
+        "filter": "Filter"
     },
     "modals": {
         "error": "An Error Occurred",
@@ -51,6 +52,9 @@
             "title": "Log In",
             "description": "Check your inbox. We sent you required creds.",
             "isActivated": "Your account is activated, please enter credentials that we sent on your email."
+        },
+        "filter": {
+            "title": "Filter"
         }
     },
     "formErrors": {
@@ -64,7 +68,16 @@
         "datePlaceholder": "Enter date",
         "hoursPlaceholder": "Enter working hours",
         "isAdmin": "Is this an Admin?",
-        "wantToDelete": "Are you sure you want to delete this project?"
+        "wantToDelete": "Are you sure you want to delete this project?",
+        "filter": {
+            "title": "Filter",
+            "admin": "Admin",
+            "user": "User",
+            "projects": "Projects",
+            "userActive": "Active user",
+            "userDisable": "Disabled user",
+            "all": "All"
+        }
     },
     "tables": {
         "noWorkflow": "You don't have any workflow for now.",

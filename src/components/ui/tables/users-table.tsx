@@ -15,10 +15,8 @@ import { Project, User, UsersResponse } from "@/types/users";
 import { CheckCircle2, Pencil, Trash2, XCircle } from "lucide-react";
 import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
-import { FilterUsersTable } from "./filter-users-table";
 import { DeleteUserModal } from "../modals/delete-user-modal";
 import { TablePagination } from "./table-pagination";
-import { useSearchParams } from "next/navigation";
 
 interface Props {
     data: UsersResponse;
@@ -67,7 +65,6 @@ export const UsersTable: FC<Props> = ({
 
     return (
         <>
-            <FilterUsersTable />
             <Table className="bg-midnight border-2 border-secondary rounded-md">
                 <TableHeader>
                     <TableRow className="!border-b-2 border-slate-700">
