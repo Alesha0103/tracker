@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRefreshToken, getUserType } from "./configs/server-storage";
-import { AppRoute, UserType } from "./enums/auth";
+import { AppRoute } from "./enums/auth";
+import { UserType } from "./enums/users";
 
 export async function middleware(req: NextRequest) {
     const token = await getRefreshToken();

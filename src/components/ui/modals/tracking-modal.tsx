@@ -11,7 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
 import { Input } from "../input";
 import { FormDatePicker } from "../date-picker";
 import { CustomButton } from "../custom-button";
-import { handleHoursChange } from "@/lib/utils";
+import { handleHoursChange } from "@/utils";
 import { useTrackingHours } from "@/services/users/mutations";
 import dayjs from "dayjs";
 import { useUserStore } from "@/store/user-store";
@@ -44,6 +44,7 @@ export const TrackingModal: FC<Props> = ({
         defaultValues: {
             date: String(new Date()),
             hours: "",
+            comment: "",
         },
     });
     const { control, handleSubmit } = form;
@@ -57,6 +58,7 @@ export const TrackingModal: FC<Props> = ({
                 projectId: project.id,
                 date: dayjs(formData.date).format("YYYY-MM-DD"),
                 hours: formData.hours,
+                comment: formData.comment,
             });
             closeModal();
         } catch (err) {
@@ -108,25 +110,49 @@ export const TrackingModal: FC<Props> = ({
                             </FormItem>
                         )}
                     />
-                    <FormField
-                        control={control}
-                        name="hours"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormControl>
-                                    <Input
-                                        placeholder={tForms("hoursPlaceholder")}
-                                        {...field}
-                                        onChange={(e) =>
-                                            handleHoursChange(e, field.onChange)
-                                        }
-                                        inputMode="decimal"
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+
+                    <div className="flex gap-x-4">
+                        <FormField
+                            control={control}
+                            name="hours"
+                            render={({ field }) => (
+                                <FormItem className="basis-1/5">
+                                    <FormControl>
+                                        <Input
+                                            placeholder={tForms(
+                                                "hoursPlaceholder"
+                                            )}
+                                            {...field}
+                                            onChange={(e) =>
+                                                handleHoursChange(
+                                                    e,
+                                                    field.onChange
+                                                )
+                                            }
+                                            inputMode="decimal"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={control}
+                            name="comment"
+                            render={({ field }) => (
+                                <FormItem className="basis-4/5">
+                                    <FormControl>
+                                        <Input
+                                            placeholder={tForms("comment")}
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+
                     <div className="flex gap-x-10">
                         <CustomButton
                             text={tButtons("cancel")}

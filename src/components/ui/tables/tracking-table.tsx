@@ -78,11 +78,11 @@ export const TrackingTable: FC<Props> = ({ projects }) => {
                             <TableCell className="flex gap-x-3 justify-center">
                                 <Pencil
                                     className="text-slate-400 hover:cursor-pointer hover:text-white"
-                                    // onClick={onEditClick(user)}
+                                    onClick={onTrackingClick(project)}
                                 />
                                 <SquareMousePointer
                                     className="text-slate-400 hover:cursor-pointer hover:text-white"
-                                    onClick={onTrackingClick(project)}
+                                    // onClick={onEditClick(user)}
                                 />
                             </TableCell>
                         </TableRow>

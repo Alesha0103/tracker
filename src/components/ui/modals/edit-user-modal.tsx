@@ -17,9 +17,8 @@ import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
 import { BaseModal } from "./base-modal";
 import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-// TODO: if you are admin you can't say to the system that you are user now!!!
+import { cn } from "@/utils";
+import { MAX_PROJECTS_COUNT } from "@/constants";
 
 interface Props {
     user: User;
@@ -209,9 +208,10 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
                         className="h-8 text-blue-500 p-0 hover:underline"
                         onClick={addMoreInput}
                         text={tButtons("addProject")}
-                        isDisabled={projectsWatch.some(
-                            (p: string) => !p?.trim()
-                        )}
+                        isDisabled={
+                            projectsWatch.length === MAX_PROJECTS_COUNT ||
+                            projectsWatch.some((p: string) => !p?.trim())
+                        }
                     />
                     <FormField
                         control={control}

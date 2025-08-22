@@ -1,3 +1,4 @@
+import { DAY_HOURS } from "@/constants";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -16,7 +17,7 @@ export const handleHoursChange = (
     }
     if (
         (value === "" || /^\d*\.?\d{0,2}$/.test(value)) &&
-        (value === "" || Number(value) <= 24)
+        (value === "" || Number(value) <= DAY_HOURS)
     ) {
         onChange(value);
     }

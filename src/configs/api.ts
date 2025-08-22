@@ -8,18 +8,20 @@ export const api = axios.create({
 api.interceptors.response.use(
     function (response) {
         return response;
+    },
+    async function (error) {
+        if (
+            error.response?.status === 401 &&
+            error.response?.data?.message === "NOT_AUTORIZED"
+        ) {
+            if (typeof window !== "undefined") {
+                localStorage.clear();
+                window.location.href = "/";
+            }
+            await api.post("/logout", {}, { withCredentials: true });
+        }
+        return Promise.reject(error);
     }
-    // async function (error) {
-    //     if (
-    //         error.response?.status === 401 &&
-    //         error.response?.data?.message === "NOT_AUTORIZED"
-    //     ) {
-    //         localStorage.clear();
-    //         await api.post("/logout", {}, { withCredentials: true });
-    //         window.location.href = "/";
-    //     }
-    //     return Promise.reject(error);
-    // }
 );
 
 api.interceptors.request.use(

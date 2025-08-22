@@ -14,4 +14,5 @@ export const editUserSchema = z.object({
 export const trackingSchema = z.object({
     date: z.string(),
     hours: z.string().min(1, "requiredField"),
+    comment: z.string(),
 });
