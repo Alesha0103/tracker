@@ -30,6 +30,7 @@ export const TrackingModal: FC<Props> = ({
     openModal,
     closeModal,
 }) => {
+    console.log("project", project);
     const tButtons = useTranslations("buttons");
     const tModals = useTranslations("modals");
     const tForms = useTranslations("forms");

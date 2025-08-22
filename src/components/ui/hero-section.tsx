@@ -48,14 +48,14 @@ export const HeroSection = () => {
                 <CustomButton
                     text={<ArrowBigLeft />}
                     onClick={onArrowClick}
-                    className="rounded-full p-3 absolute top-3 left-5 lg:top-auto lg:left-20"
+                    className="rounded-full p-3 absolute top-3 left-5 lg:top-auto lg:left-10"
                 />
             )}
             {user?.isAdmin && pathname === AppRoute.TRACKING && (
                 <CustomButton
                     text={<ArrowBigRight />}
                     onClick={onArrowClick}
-                    className="rounded-full p-3 absolute top-3 right-5 lg:top-auto lg:right-20"
+                    className="rounded-full p-3 absolute top-3 right-5 lg:top-auto lg:right-10"
                 />
             )}
         </section>

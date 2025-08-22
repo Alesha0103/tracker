@@ -28,7 +28,8 @@
         "yes": "Yes",
         "no": "No",
         "addProject": "Add one more project",
-        "filter": "Filter"
+        "filter": "Filter",
+        "tracking": "Track time"
     },
     "modals": {
         "error": "An Error Occurred",
@@ -100,6 +101,13 @@
             "hours": "Total hours",
             "comment": "Comment",
             "action": "Action"
+        },
+        "statsTable": {
+            "date": "Date",
+            "comment": "Comment",
+            "hours": "Hours",
+            "action": "Action",
+            "noStats": "You don't have any stats yet."
         }
     }
 }

@@ -35,6 +35,11 @@ export interface UsersDto {
     projects?: string[];
 }
 
+export interface ProjectDto {
+    userId?: string;
+    projectId?: string;
+}
+
 export interface Project {
     id: string;
     name: string;
@@ -42,6 +47,7 @@ export interface Project {
     updatedAt: string;
     hours: number;
     isDisabled: boolean;
+    stats: Stats[];
 }
 
 export interface User {
@@ -65,4 +71,10 @@ export interface FilterUsers {
     userActivity?: UserActivity[];
     projects?: string[];
     callback?: () => void;
+}
+
+export interface Stats {
+    date: string;
+    comment: string;
+    hours: number;
 }

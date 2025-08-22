@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProjects, getUsers } from "./endpoints";
-import { UsersDto } from "@/types/users";
+import { getProjects, getUserProject, getUsers } from "./endpoints";
+import { ProjectDto, UsersDto } from "@/types/users";
 
 export const useGetUsers = (dto: UsersDto) => {
     return useQuery({
@@ -17,5 +17,15 @@ export const useGetProjects = () => {
         queryFn: getProjects,
         queryKey: ["get-projects"],
         refetchOnWindowFocus: true,
+    });
+};
+
+export const useGetUserProject = (dto: ProjectDto) => {
+    return useQuery({
+        retry: false,
+        queryFn: () => getUserProject(dto),
+        queryKey: ["user-project"],
+        refetchOnWindowFocus: true,
+        enabled: !!dto.userId && !!dto.projectId,
     });
 };
