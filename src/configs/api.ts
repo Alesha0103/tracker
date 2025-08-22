@@ -14,9 +14,11 @@ api.interceptors.response.use(
             error.response?.status === 401 &&
             error.response?.data?.message === "NOT_AUTORIZED"
         ) {
-            localStorage.clear();
+            if (typeof window !== "undefined") {
+                localStorage.clear();
+                window.location.href = "/";
+            }
             await api.post("/logout", {}, { withCredentials: true });
-            window.location.href = "/";
         }
         return Promise.reject(error);
     }

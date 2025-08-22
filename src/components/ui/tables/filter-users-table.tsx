@@ -5,9 +5,6 @@ import { AddUserModal } from "../modals/add-user-modal";
 import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
 import { FilterUsers } from "@/types/users";
-import { Input } from "../input";
-import { TitleUI } from "../typography";
-import { Switch } from "../switch";
 import { UsersFilterModal } from "../modals/users-filter-modal";
 
 interface Props {
@@ -16,7 +13,6 @@ interface Props {
 
 export const FilterUsersTable: FC<Props> = ({ filterUsers }) => {
     const tButtons = useTranslations("buttons");
-    const tForms = useTranslations("forms");
 
     const { openModal, closeModal, Modal } = useModal();
 

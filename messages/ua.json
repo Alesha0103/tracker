@@ -66,7 +66,8 @@
         "passwordPlaceholder": "Введіть пароль",
         "projectPlaceholder": "Введіть назву проєкту",
         "datePlaceholder": "Введіть дату",
-        "hoursPlaceholder": "Введіть робочі години",
+        "hoursPlaceholder": "Години",
+        "comment": "Коментар",
         "isAdmin": "Це адмін?",
         "wantToDelete": "Впевнені що хочете видалити цей проєкт?",
         "filter": {
@@ -96,6 +97,7 @@
             "createdAt": "Створено",
             "updatedAt": "Оновлено",
             "hours": "Затрекані години",
+            "comment": "Коментар",
             "action": "Операція"
         }
     }

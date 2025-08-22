@@ -5,15 +5,9 @@ import { getLocale } from "next-intl/server";
 import "@/styles/globals.css";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
-import {
-    QueryClient,
-    QueryClientProvider,
-    useQuery,
-} from "@tanstack/react-query";
 import { QueryProvider } from "@/components/query-provider";
 import { Suspense } from "react";
 import { Loader } from "@/components/ui/loader";
-import { HeroSection } from "@/components/ui/hero-section";
 
 export const metadata: Metadata = {
     title: "Time Tracker",
