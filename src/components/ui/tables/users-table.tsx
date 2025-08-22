@@ -17,6 +17,7 @@ import { EditUserModal } from "../modals/edit-user-modal";
 import { Button } from "../button";
 import { DeleteUserModal } from "../modals/delete-user-modal";
 import { TablePagination } from "./table-pagination";
+import { MIN_PAGES } from "@/constants";
 
 interface Props {
     data: UsersResponse;
@@ -149,10 +150,12 @@ export const UsersTable: FC<Props> = ({
                     ))}
                 </TableBody>
             </Table>
-            <TablePagination
-                pages={pages}
-                currentPage={Number(currentPage || 1)}
-            />
+            {pages > MIN_PAGES && (
+                <TablePagination
+                    pages={pages}
+                    currentPage={Number(currentPage || 1)}
+                />
+            )}
             <Modal />
         </>
     );

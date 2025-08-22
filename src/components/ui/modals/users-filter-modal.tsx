@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { AppRoute } from "@/enums/auth";
 import { Checkbox } from "../checkbox";
 import { UserActivity, UserType } from "@/enums/users";
+import { useUserStore } from "@/store/user-store";
 
 interface Props {
     filterUsers: (data: FilterUsers) => void;
@@ -25,16 +26,18 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
     const tModals = useTranslations("modals");
     const tForms = useTranslations("forms");
 
+    const { savedUserFilterForm, setUserFilterForm } = useUserStore();
+
     const form = useForm<FilterUsersFields>({
         defaultValues: {
-            email: "",
-            projects: "",
-            isAdmin: false,
-            isUser: false,
-            userActive: false,
-            userDisable: false,
-            allTypes: true,
-            allActivity: true,
+            email: savedUserFilterForm?.email ?? "",
+            projects: savedUserFilterForm?.projects ?? "",
+            isAdmin: savedUserFilterForm?.isAdmin ?? false,
+            isUser: savedUserFilterForm?.isUser ?? false,
+            userActive: savedUserFilterForm?.userActive ?? false,
+            userDisable: savedUserFilterForm?.userDisable ?? false,
+            allTypes: savedUserFilterForm?.allTypes ?? true,
+            allActivity: savedUserFilterForm?.allActivity ?? true,
         },
     });
 
@@ -55,6 +58,8 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
     }, [watchIsAdmin, watchIsUser, watchUserActive, watchUserDisable]);
 
     const onSubmit: SubmitHandler<FilterUsersFields> = (formData) => {
+        setUserFilterForm(formData);
+
         let userTypes = [];
         let userActivity = [];
 
