@@ -73,12 +73,22 @@
         "wantToDelete": "Впевнені що хочете видалити цей проєкт?",
         "filter": {
             "title": "Фільтр",
-            "admin": "Адмін",
-            "user": "Юзер",
-            "projects": "Проєкти",
-            "userActive": "Активний юзер",
-            "userDisable": "Не активний юзер",
-            "all": "Всі"
+            "users": {
+                "admin": "Адмін",
+                "user": "Юзер",
+                "projects": "Проєкти",
+                "userActive": "Активний юзер",
+                "userDisable": "Не активний юзер",
+                "all": "Всі"
+            },
+            "stats": {
+                "thisWeek": "Цей тиждень",
+                "thisMonth": "Цей місяць",
+                "prevWeek": "Минулий тиждень",
+                "prevMonth": "Минулий місяць",
+                "dateFrom": "З якого числа:",
+                "dateTo": "По яке число:"
+            }
         }
     },
     "tables": {

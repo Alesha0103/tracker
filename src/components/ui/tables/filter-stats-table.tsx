@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { FilterUsers, Project } from "@/types/users";
 import { UsersFilterModal } from "../modals/users-filter-modal";
 import { TrackingModal } from "../modals/tracking-modal";
+import { StatsFilterModal } from "../modals/stats-filter-modal";
 
 interface Props {
     project?: Project;
@@ -29,18 +30,17 @@ export const FilterStatsTable: FC<Props> = ({ project, filterStats }) => {
             );
     }, [project]);
 
-    // const onFilterClick = useCallback(() => {
-    //     openModal(
-    //         <UsersFilterModal
-    //             closeModal={closeModal}
-    //             filterUsers={filterStats}
-    //         />
-    //     );
-    // }, []);
+    const onFilterClick = useCallback(() => {
+        openModal(<StatsFilterModal closeModal={closeModal} />);
+    }, []);
 
     return (
         <div className="flex mb-2 justify-between">
-            <CustomButton text={tButtons("filter")} className="w-28" />
+            <CustomButton
+                text={tButtons("filter")}
+                onClick={onFilterClick}
+                className="w-28"
+            />
             <CustomButton
                 text={tButtons("tracking")}
                 onClick={onTrackingClick}

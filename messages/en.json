@@ -73,12 +73,22 @@
         "wantToDelete": "Are you sure you want to delete this project?",
         "filter": {
             "title": "Filter",
-            "admin": "Admin",
-            "user": "User",
-            "projects": "Projects",
-            "userActive": "Active user",
-            "userDisable": "Disabled user",
-            "all": "All"
+            "users": {
+                "admin": "Admin",
+                "user": "User",
+                "projects": "Projects",
+                "userActive": "Active user",
+                "userDisable": "Disabled user",
+                "all": "All"
+            },
+            "stats": {
+                "thisWeek": "This week",
+                "thisMonth": "This month",
+                "prevWeek": "Previos week",
+                "prevMonth": "Previos month",
+                "dateFrom": "Date from:",
+                "dateTo": "Date to:"
+            }
         }
     },
     "tables": {

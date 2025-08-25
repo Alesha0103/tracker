@@ -16,7 +16,6 @@ interface Props {
     projectId: string;
 }
 
-// TODO: make filter for stats BE+FE
 export const Stats: FC<Props> = ({ projectId }) => {
     const router = useRouter();
 

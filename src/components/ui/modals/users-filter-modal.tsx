@@ -126,7 +126,9 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                             <FormItem>
                                 <FormControl>
                                     <Input
-                                        placeholder={tForms("filter.projects")}
+                                        placeholder={tForms(
+                                            "filter.users.projects"
+                                        )}
                                         {...field}
                                     />
                                 </FormControl>
@@ -159,7 +161,9 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                                                     }}
                                                 />
                                                 <label className="text-slate-400 text-sm">
-                                                    {tForms("filter.admin")}
+                                                    {tForms(
+                                                        "filter.users.admin"
+                                                    )}
                                                 </label>
                                             </div>
                                         </FormControl>
@@ -189,7 +193,9 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                                                     }}
                                                 />
                                                 <label className="text-slate-400 text-sm">
-                                                    {tForms("filter.user")}
+                                                    {tForms(
+                                                        "filter.users.user"
+                                                    )}
                                                 </label>
                                             </div>
                                         </FormControl>
@@ -225,7 +231,7 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                                                     }}
                                                 />
                                                 <label className="text-slate-400 text-sm">
-                                                    {tForms("filter.all")}
+                                                    {tForms("filter.users.all")}
                                                 </label>
                                             </div>
                                         </FormControl>
@@ -258,7 +264,7 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                                                 />
                                                 <label className="text-slate-400 text-sm">
                                                     {tForms(
-                                                        "filter.userActive"
+                                                        "filter.users.userActive"
                                                     )}
                                                 </label>
                                             </div>
@@ -290,7 +296,7 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                                                 />
                                                 <label className="text-slate-400 text-sm">
                                                     {tForms(
-                                                        "filter.userDisable"
+                                                        "filter.users.userDisable"
                                                     )}
                                                 </label>
                                             </div>
@@ -327,7 +333,7 @@ export const UsersFilterModal: FC<Props> = ({ filterUsers, closeModal }) => {
                                                     }}
                                                 />
                                                 <label className="text-slate-400 text-sm">
-                                                    {tForms("filter.all")}
+                                                    {tForms("filter.users.all")}
                                                 </label>
                                             </div>
                                         </FormControl>

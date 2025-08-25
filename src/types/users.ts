@@ -5,7 +5,7 @@ import z from "zod";
 export type AddUserFields = z.infer<typeof addUserSchema>;
 export type EditUserFields = z.infer<typeof editUserSchema>;
 export type TrackingHoursFields = z.infer<typeof trackingSchema>;
-export type FilterUsersFields = {
+export interface FilterUsersFields {
     email: string;
     projects: string;
     isAdmin: boolean;
@@ -14,7 +14,15 @@ export type FilterUsersFields = {
     userActive: boolean;
     userDisable: boolean;
     allActivity: boolean;
-};
+}
+export interface FilterStatsFields {
+    thisWeek: boolean;
+    thisMonth: boolean;
+    prevWeek: boolean;
+    prevMonth: boolean;
+    dateFrom: string;
+    dateTo: string;
+}
 
 export type AddUserDto = AddUserFields;
 
