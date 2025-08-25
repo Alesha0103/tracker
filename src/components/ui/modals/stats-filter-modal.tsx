@@ -5,12 +5,12 @@ import React, { FC, useCallback } from "react";
 import { DialogContent, DialogTitle } from "../dialog";
 import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
-import { Input } from "../input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "../form";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "../checkbox";
 import { FormDatePicker } from "../date-picker";
+import dayjs from "dayjs";
 
 const defaultCheckboxValues = {
     thisWeek: false,
@@ -22,10 +22,11 @@ const defaultCheckboxValues = {
 type CheckboxKeys = keyof typeof defaultCheckboxValues;
 
 interface Props {
+    filterStats: (stats: FilterStatsFields) => void;
     closeModal: () => void;
 }
 
-export const StatsFilterModal: FC<Props> = ({ closeModal }) => {
+export const StatsFilterModal: FC<Props> = ({ filterStats, closeModal }) => {
     const router = useRouter();
 
     const tButtons = useTranslations("buttons");
@@ -63,22 +64,47 @@ export const StatsFilterModal: FC<Props> = ({ closeModal }) => {
     const onSubmit: SubmitHandler<FilterStatsFields> = (formData) => {
         const checkboxes = (
             Object.keys(defaultCheckboxValues) as CheckboxKeys[]
-        ).reduce(
-            (acc, key) => {
-                if (formData[key]) {
-                    acc[key] = true;
-                }
-                return acc;
-            },
-            {} as Record<CheckboxKeys, boolean>
-        );
+        )
+            .filter((key) => {
+                return formData[key];
+            })
+            .map((key) => {
+                return { [key]: true };
+            });
+
+        const activeCheckboxes = Object.assign({}, ...checkboxes);
+
+        // ANOTHER VARIANT*
+        // const checkboxes = (
+        //     Object.keys(defaultCheckboxValues) as CheckboxKeys[]
+        // ).reduce(
+        //     (acc, key) => {
+        //         if (formData[key]) {
+        //             acc[key] = true;
+        //         }
+        //         return acc;
+        //     },
+        //     {} as Record<CheckboxKeys, boolean>
+        // );
+
+        let dateFrom = formData.dateFrom
+            ? dayjs(formData.dateFrom).format("YYYY-MM-DD")
+            : undefined;
+        let dateTo = formData.dateTo
+            ? dayjs(formData.dateTo).format("YYYY-MM-DD")
+            : undefined;
+
+        if (dateFrom && dateTo && dayjs(dateFrom).isAfter(dayjs(dateTo))) {
+            [dateFrom, dateTo] = [dateTo, dateFrom];
+        }
 
         const dto = {
-            ...(!isDatePickerDisabled && { dateFrom: formData.dateFrom }),
-            ...(!isDatePickerDisabled && { dateTo: formData.dateTo }),
-            ...checkboxes,
+            ...(!isDatePickerDisabled && { dateFrom }),
+            ...(!isDatePickerDisabled && { dateTo }),
+            ...activeCheckboxes,
         };
-        console.log("dto", dto);
+        filterStats(dto);
+        router.refresh();
         closeModal();
     };
 

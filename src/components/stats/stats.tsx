@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { GlobalTitleUI, TitleUI } from "../ui/typography";
 import { useGetUserProject } from "@/services/users/query";
 import { useUserStore } from "@/store/user-store";
@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { Loader } from "../ui/loader";
 import { StatsTable } from "../ui/tables/stats-table";
 import { FilterStatsTable } from "../ui/tables/filter-stats-table";
+import { FilterStatsFields } from "@/types/users";
 
 interface Props {
     projectId: string;
@@ -20,14 +21,39 @@ export const Stats: FC<Props> = ({ projectId }) => {
     const router = useRouter();
 
     const { user } = useUserStore();
+
+    const [thisWeek, setThisWeek] = useState<boolean | undefined>();
+    const [thisMonth, setThisMonth] = useState<boolean | undefined>();
+    const [prevWeek, setPrevWeek] = useState<boolean | undefined>();
+    const [prevMonth, setPrevMonth] = useState<boolean | undefined>();
+    const [dateFrom, setDateFrom] = useState<string | undefined>();
+    const [dateTo, setDateTo] = useState<string | undefined>();
+
     const { data, isPending } = useGetUserProject({
         userId: user?.id,
         projectId,
+        thisWeek,
+        thisMonth,
+        prevWeek,
+        prevMonth,
+        dateFrom,
+        dateTo,
     });
 
     const onArrowClick = useCallback(() => {
         router.back();
     }, [router, projectId]);
+
+    const filterStats = useCallback((stats: FilterStatsFields) => {
+        const { thisWeek, thisMonth, prevWeek, prevMonth, dateFrom, dateTo } =
+            stats;
+        setThisWeek(thisWeek);
+        setThisMonth(thisMonth);
+        setPrevWeek(prevWeek);
+        setPrevMonth(prevMonth);
+        setDateFrom(dateFrom);
+        setDateTo(dateTo);
+    }, []);
 
     if (isPending) return <Loader />;
 
@@ -43,7 +69,7 @@ export const Stats: FC<Props> = ({ projectId }) => {
                     {data?.name}
                 </GlobalTitleUI>
             </div>
-            <FilterStatsTable project={data} />
+            <FilterStatsTable project={data} filterStats={filterStats} />
             <StatsTable data={data} />
         </section>
     );

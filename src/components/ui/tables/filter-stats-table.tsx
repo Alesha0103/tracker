@@ -4,14 +4,14 @@ import React, { FC, useCallback } from "react";
 import { AddUserModal } from "../modals/add-user-modal";
 import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
-import { FilterUsers, Project } from "@/types/users";
+import { FilterStatsFields, FilterUsers, Project } from "@/types/users";
 import { UsersFilterModal } from "../modals/users-filter-modal";
 import { TrackingModal } from "../modals/tracking-modal";
 import { StatsFilterModal } from "../modals/stats-filter-modal";
 
 interface Props {
     project?: Project;
-    filterStats?: (data: FilterUsers) => void;
+    filterStats: (stats: FilterStatsFields) => void;
 }
 
 export const FilterStatsTable: FC<Props> = ({ project, filterStats }) => {
@@ -31,7 +31,12 @@ export const FilterStatsTable: FC<Props> = ({ project, filterStats }) => {
     }, [project]);
 
     const onFilterClick = useCallback(() => {
-        openModal(<StatsFilterModal closeModal={closeModal} />);
+        openModal(
+            <StatsFilterModal
+                filterStats={filterStats}
+                closeModal={closeModal}
+            />
+        );
     }, []);
 
     return (

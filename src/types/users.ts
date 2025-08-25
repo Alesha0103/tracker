@@ -16,12 +16,12 @@ export interface FilterUsersFields {
     allActivity: boolean;
 }
 export interface FilterStatsFields {
-    thisWeek: boolean;
-    thisMonth: boolean;
-    prevWeek: boolean;
-    prevMonth: boolean;
-    dateFrom: string;
-    dateTo: string;
+    thisWeek?: boolean;
+    thisMonth?: boolean;
+    prevWeek?: boolean;
+    prevMonth?: boolean;
+    dateFrom?: string;
+    dateTo?: string;
 }
 
 export type AddUserDto = AddUserFields;
@@ -43,10 +43,10 @@ export interface UsersDto {
     projects?: string[];
 }
 
-export interface ProjectDto {
+export type ProjectDto = FilterStatsFields & {
     userId?: string;
     projectId?: string;
-}
+};
 
 export interface Project {
     id: string;

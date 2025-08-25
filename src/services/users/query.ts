@@ -24,7 +24,7 @@ export const useGetUserProject = (dto: ProjectDto) => {
     return useQuery({
         retry: false,
         queryFn: () => getUserProject(dto),
-        queryKey: ["user-project"],
+        queryKey: ["user-project", dto],
         refetchOnWindowFocus: true,
         enabled: !!dto.userId && !!dto.projectId,
     });
