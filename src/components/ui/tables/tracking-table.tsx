@@ -10,7 +10,7 @@ import {
     TableRow,
 } from "../table";
 import { Project } from "@/types/users";
-import { Pencil, SquareMousePointer } from "lucide-react";
+import { NotebookPen, SquareMousePointer } from "lucide-react";
 import { TrackingModal } from "../modals/tracking-modal";
 import { useRouter } from "next/navigation";
 import { AppRoute } from "@/enums/auth";
@@ -85,7 +85,7 @@ export const TrackingTable: FC<Props> = ({ projects }) => {
                                 {project.hours || 0}
                             </TableCell>
                             <TableCell className="flex gap-x-3 justify-center">
-                                <Pencil
+                                <NotebookPen
                                     className="text-slate-400 hover:cursor-pointer hover:text-white"
                                     onClick={onTrackingClick(project)}
                                 />

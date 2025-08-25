@@ -46,6 +46,7 @@ export interface UsersDto {
 export type ProjectDto = FilterStatsFields & {
     userId?: string;
     projectId?: string;
+    page?: number;
 };
 
 export interface Project {
@@ -55,7 +56,7 @@ export interface Project {
     updatedAt: string;
     hours: number;
     isDisabled: boolean;
-    stats: Stats[];
+    stats: Stats;
 }
 
 export interface User {
@@ -81,8 +82,13 @@ export interface FilterUsers {
     callback?: () => void;
 }
 
-export interface Stats {
+export interface StatsItem {
     date: string;
     comment: string;
     hours: number;
+}
+export interface Stats {
+    items: StatsItem[];
+    currentPage: number;
+    pages: number;
 }

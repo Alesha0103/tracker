@@ -7,11 +7,12 @@ import { useUserStore } from "@/store/user-store";
 import { useTranslations } from "next-intl";
 import { ArrowBigLeft, Pencil } from "lucide-react";
 import { CustomButton } from "../ui/custom-button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "../ui/loader";
 import { StatsTable } from "../ui/tables/stats-table";
 import { FilterStatsTable } from "../ui/tables/filter-stats-table";
 import { FilterStatsFields } from "@/types/users";
+import { AppRoute } from "@/enums/auth";
 
 interface Props {
     projectId: string;
@@ -19,6 +20,8 @@ interface Props {
 
 export const Stats: FC<Props> = ({ projectId }) => {
     const router = useRouter();
+    const params = useSearchParams();
+    const page = Number(params.get("page")) || 1;
 
     const { user } = useUserStore();
 
@@ -38,10 +41,11 @@ export const Stats: FC<Props> = ({ projectId }) => {
         prevMonth,
         dateFrom,
         dateTo,
+        page,
     });
 
     const onArrowClick = useCallback(() => {
-        router.back();
+        router.push(AppRoute.TRACKING);
     }, [router, projectId]);
 
     const filterStats = useCallback((stats: FilterStatsFields) => {
