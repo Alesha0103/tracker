@@ -12,4 +12,5 @@ export enum CookieName {
 export enum AppRoute {
     TRACKING = "/tracking",
     DASHBOARD = "/dashboard",
+    STATS = "/stats",
 }

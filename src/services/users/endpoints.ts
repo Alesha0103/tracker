@@ -3,6 +3,7 @@ import {
     AddUserDto,
     EditUserDto,
     Project,
+    ProjectDto,
     TrackingHoursDto,
     User,
     UsersDto,
@@ -35,5 +36,10 @@ export const trackingHours = async (dto: TrackingHoursDto): Promise<User> => {
 
 export const getProjects = async (): Promise<Project[]> => {
     const { data } = await api.get("/projects");
+    return data;
+};
+
+export const getUserProject = async (dto: ProjectDto): Promise<Project> => {
+    const { data } = await api.post("/project", dto);
     return data;
 };

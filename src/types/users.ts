@@ -5,7 +5,7 @@ import z from "zod";
 export type AddUserFields = z.infer<typeof addUserSchema>;
 export type EditUserFields = z.infer<typeof editUserSchema>;
 export type TrackingHoursFields = z.infer<typeof trackingSchema>;
-export type FilterUsersFields = {
+export interface FilterUsersFields {
     email: string;
     projects: string;
     isAdmin: boolean;
@@ -14,7 +14,15 @@ export type FilterUsersFields = {
     userActive: boolean;
     userDisable: boolean;
     allActivity: boolean;
-};
+}
+export interface FilterStatsFields {
+    thisWeek?: boolean;
+    thisMonth?: boolean;
+    prevWeek?: boolean;
+    prevMonth?: boolean;
+    dateFrom?: string;
+    dateTo?: string;
+}
 
 export type AddUserDto = AddUserFields;
 
@@ -35,6 +43,12 @@ export interface UsersDto {
     projects?: string[];
 }
 
+export type ProjectDto = FilterStatsFields & {
+    userId?: string;
+    projectId?: string;
+    page?: number;
+};
+
 export interface Project {
     id: string;
     name: string;
@@ -42,6 +56,7 @@ export interface Project {
     updatedAt: string;
     hours: number;
     isDisabled: boolean;
+    stats: Stats;
 }
 
 export interface User {
@@ -65,4 +80,15 @@ export interface FilterUsers {
     userActivity?: UserActivity[];
     projects?: string[];
     callback?: () => void;
+}
+
+export interface StatsItem {
+    date: string;
+    comment: string;
+    hours: number;
+}
+export interface Stats {
+    items: StatsItem[];
+    currentPage: number;
+    pages: number;
 }

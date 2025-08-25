@@ -52,6 +52,7 @@ export const useTrackingHours = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["get-users"] });
             queryClient.invalidateQueries({ queryKey: ["get-projects"] });
+            queryClient.invalidateQueries({ queryKey: ["user-project"] });
         },
         mutationKey: ["tracking"],
         retry: false,

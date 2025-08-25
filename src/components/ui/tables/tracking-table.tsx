@@ -10,14 +10,17 @@ import {
     TableRow,
 } from "../table";
 import { Project } from "@/types/users";
-import { Pencil, SquareMousePointer } from "lucide-react";
+import { NotebookPen, SquareMousePointer } from "lucide-react";
 import { TrackingModal } from "../modals/tracking-modal";
+import { useRouter } from "next/navigation";
+import { AppRoute } from "@/enums/auth";
 
 interface Props {
     projects: Project[];
 }
 
 export const TrackingTable: FC<Props> = ({ projects }) => {
+    const router = useRouter();
     const tTables = useTranslations("tables");
 
     const { openModal, closeModal, Modal } = useModal();
@@ -31,6 +34,12 @@ export const TrackingTable: FC<Props> = ({ projects }) => {
                     closeModal={closeModal}
                 />
             );
+        },
+        [projects]
+    );
+    const onStatsClick = useCallback(
+        (id: string) => () => {
+            router.push(AppRoute.STATS + `/${id}`);
         },
         [projects]
     );
@@ -76,13 +85,13 @@ export const TrackingTable: FC<Props> = ({ projects }) => {
                                 {project.hours || 0}
                             </TableCell>
                             <TableCell className="flex gap-x-3 justify-center">
-                                <Pencil
+                                <NotebookPen
                                     className="text-slate-400 hover:cursor-pointer hover:text-white"
                                     onClick={onTrackingClick(project)}
                                 />
                                 <SquareMousePointer
                                     className="text-slate-400 hover:cursor-pointer hover:text-white"
-                                    // onClick={onEditClick(user)}
+                                    onClick={onStatsClick(project.id)}
                                 />
                             </TableCell>
                         </TableRow>

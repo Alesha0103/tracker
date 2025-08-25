@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { EmptyUsersTable } from "../ui/tables/empty-users-table";
 import { useGetUsers } from "@/services/users/query";
 import { UsersTable } from "../ui/tables/users-table";
@@ -29,14 +29,14 @@ export const Dashboard = () => {
         projects,
     });
 
-    const filterUsers = (data: FilterUsers) => {
+    const filterUsers = useCallback((data: FilterUsers) => {
         const { userTypes, userActivity, projects, email, callback } = data;
         setUserType(userTypes);
         setEmail(email);
         setProjects(projects);
         setUserActivity(userActivity);
         callback?.();
-    };
+    }, []);
 
     return (
         <section className="container flex flex-col p-4 sm:p-10">
