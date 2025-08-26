@@ -7,35 +7,33 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Project, TrackingHoursFields } from "@/types/users";
 import { trackingSchema } from "@/schemas/users";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
-import { Input } from "../input";
-import { FormDatePicker } from "../date-picker";
-import { CustomButton } from "../custom-button";
-import { handleHoursChange } from "@/utils";
-import { useTrackingHours } from "@/services/users/mutations";
-import dayjs from "dayjs";
+import { useEditStat } from "@/services/users/mutations";
 import { useUserStore } from "@/store/user-store";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
 import { BaseModal } from "./base-modal";
 import { TrackingForm } from "../tracking-form";
+import dayjs from "dayjs";
 
 interface Props {
+    statId: string;
     project: Project;
     openModal: (element: ReactNode) => void;
     closeModal: () => void;
 }
 
-export const TrackingModal: FC<Props> = ({
+export const EditStatModal: FC<Props> = ({
+    statId,
     project,
     openModal,
     closeModal,
 }) => {
     const tButtons = useTranslations("buttons");
     const tModals = useTranslations("modals");
+    const tForms = useTranslations("forms");
     const tErrors = useTranslations("serverErrors");
 
-    const { mutateAsync: trackHours } = useTrackingHours();
+    const { mutateAsync: editStat } = useEditStat();
 
     const { user } = useUserStore();
 
@@ -53,7 +51,8 @@ export const TrackingModal: FC<Props> = ({
         if (!user) return;
 
         try {
-            await trackHours({
+            await editStat({
+                statId,
                 userId: user.id,
                 projectId: project.id,
                 date: dayjs(formData.date).format("YYYY-MM-DD"),
@@ -83,7 +82,7 @@ export const TrackingModal: FC<Props> = ({
     return (
         <DialogContent className="bg-midnight max-w-md" aria-describedby={""}>
             <DialogTitle className="text-white text-center">
-                {tModals("timeTracking.title")}
+                {tModals("editStat.title")}
             </DialogTitle>
             <TrackingForm
                 form={form}

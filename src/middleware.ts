@@ -8,9 +8,13 @@ export async function middleware(req: NextRequest) {
     const userType = await getUserType();
     const currentPath = req.nextUrl.pathname;
 
-    const protectedRoutes: string[] = [AppRoute.TRACKING, AppRoute.DASHBOARD];
+    const protectedRoutes: string[] = [
+        AppRoute.TRACKING,
+        AppRoute.DASHBOARD,
+        AppRoute.STATS,
+    ];
 
-    if (protectedRoutes.includes(currentPath)) {
+    if (protectedRoutes.some((route) => currentPath.startsWith(route))) {
         if (!token) {
             return NextResponse.redirect(new URL("/", req.url));
         }

@@ -74,7 +74,7 @@ export const Stats: FC<Props> = ({ projectId }) => {
                 </GlobalTitleUI>
             </div>
             <FilterStatsTable project={data} filterStats={filterStats} />
-            <StatsTable data={data} />
+            <StatsTable project={data} />
         </section>
     );
 };
