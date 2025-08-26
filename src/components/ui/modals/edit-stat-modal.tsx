@@ -5,7 +5,7 @@ import { DialogContent, DialogTitle } from "../dialog";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Project, TrackingHoursFields } from "@/types/users";
+import { Project, StatsItem, TrackingHoursFields } from "@/types/users";
 import { trackingSchema } from "@/schemas/users";
 import { useEditStat } from "@/services/users/mutations";
 import { useUserStore } from "@/store/user-store";
@@ -16,14 +16,14 @@ import { TrackingForm } from "../tracking-form";
 import dayjs from "dayjs";
 
 interface Props {
-    statId: string;
+    stat: StatsItem;
     project: Project;
     openModal: (element: ReactNode) => void;
     closeModal: () => void;
 }
 
 export const EditStatModal: FC<Props> = ({
-    statId,
+    stat,
     project,
     openModal,
     closeModal,
@@ -39,7 +39,7 @@ export const EditStatModal: FC<Props> = ({
     const form = useForm<TrackingHoursFields>({
         resolver: zodResolver(trackingSchema),
         defaultValues: {
-            date: String(new Date()),
+            date: stat.date || String(new Date()),
             hours: "",
             comment: "",
         },
@@ -51,7 +51,7 @@ export const EditStatModal: FC<Props> = ({
 
         try {
             await editStat({
-                statId,
+                statId: stat.id,
                 userId: user.id,
                 projectId: project.id,
                 date: dayjs(formData.date).format("YYYY-MM-DD"),
@@ -65,7 +65,7 @@ export const EditStatModal: FC<Props> = ({
                     description={tModals("success.description")}
                     onSubmit={closeModal}
                     titleClassName="uppercase"
-                    submitButtonClassName="bg-app-green hover:bg-green-600"
+                    submitButtonClassName="bg-green-600 hover:bg-green-500"
                 />
             );
         } catch (err) {

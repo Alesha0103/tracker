@@ -10,14 +10,13 @@ import {
     TableRow,
 } from "../table";
 import { useTranslations } from "next-intl";
-import { Project } from "@/types/users";
+import { Project, StatsItem } from "@/types/users";
 import { Pencil } from "lucide-react";
 import { TitleUI } from "../typography";
 import { MIN_PAGES } from "@/constants";
 import { TablePagination } from "./table-pagination";
 import useModal from "@/hooks/use-modal";
 import { EditStatModal } from "../modals/edit-stat-modal";
-import { TrackingModal } from "../modals/tracking-modal";
 
 interface Props {
     project?: Project;
@@ -31,11 +30,11 @@ export const StatsTable: FC<Props> = ({ project }) => {
     const { openModal, closeModal, Modal } = useModal();
 
     const onEditClick = useCallback(
-        (statId: string) => () => {
+        (stat: StatsItem) => () => {
             project &&
                 openModal(
                     <EditStatModal
-                        statId={statId}
+                        stat={stat}
                         project={project}
                         openModal={openModal}
                         closeModal={closeModal}
@@ -83,7 +82,7 @@ export const StatsTable: FC<Props> = ({ project }) => {
                                 <TableCell className="flex gap-x-3 justify-center">
                                     <Pencil
                                         className="text-slate-400 hover:cursor-pointer hover:text-white"
-                                        onClick={onEditClick(stat.id)}
+                                        onClick={onEditClick(stat)}
                                     />
                                 </TableCell>
                             </TableRow>

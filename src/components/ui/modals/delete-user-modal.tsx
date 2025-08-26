@@ -39,7 +39,7 @@ export const DeleteUserModal: FC<Props> = ({ id, openModal, closeModal }) => {
                     description={tModals("success.description")}
                     onSubmit={closeModal}
                     titleClassName="uppercase"
-                    submitButtonClassName="bg-app-green hover:bg-green-600"
+                    submitButtonClassName="bg-green-600 hover:bg-green-500"
                 />
             );
         } catch (err) {
