@@ -1,14 +1,30 @@
 import { useMutation } from "@tanstack/react-query";
-import { signIn } from "./endpoints";
+import { logout, signIn } from "./endpoints";
 import { useUserStore } from "@/store/user-store";
+import { deleteToken, setAccessToken } from "@/configs/client-storage";
 
 export const useSignIn = () => {
     const { setUser } = useUserStore();
     return useMutation({
-        retry: false,
         mutationFn: signIn,
+        onSuccess: (data) => {
+            setAccessToken({ accessToken: data.accessToken });
+            setUser(data.user);
+        },
         mutationKey: ["sign-in"],
-        onMutate: () => {},
-        onSuccess: (user) => setUser(user),
+        retry: false,
+    });
+};
+
+export const useLogout = () => {
+    const { setUser } = useUserStore();
+    return useMutation({
+        mutationFn: logout,
+        onSuccess: async () => {
+            setUser(null);
+            deleteToken();
+        },
+        mutationKey: ["logout"],
+        retry: false,
     });
 };

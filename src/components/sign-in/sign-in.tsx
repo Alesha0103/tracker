@@ -4,7 +4,6 @@ import React from "react";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormMessage,
@@ -18,17 +17,25 @@ import { CustomButton } from "../ui/custom-button";
 import { useTranslations } from "next-intl";
 import { useSignIn } from "@/services/auth/mutation";
 import useModal from "@/hooks/use-modal";
-import { BaseModal } from "../modals/base-modal";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
+import { useRouter, useSearchParams } from "next/navigation";
+import { AppRoute } from "@/enums/auth";
+import { BaseModal } from "../ui/modals/base-modal";
+import { SectionTitleUI, TextUI } from "../ui/typography";
 
 export const SignIn = () => {
+    const router = useRouter();
+    const params = useSearchParams();
+
+    const isActivatedLink = params.get("activated") === "true";
+
     const tButtons = useTranslations("buttons");
     const tErrors = useTranslations("serverErrors");
     const tModals = useTranslations("modals");
     const tForms = useTranslations("forms");
 
-    const { mutateAsync: signIn } = useSignIn();
+    const { mutateAsync: signIn, isPending } = useSignIn();
 
     const { openModal, closeModal, Modal } = useModal();
 
@@ -43,20 +50,24 @@ export const SignIn = () => {
 
     const onSubmit: SubmitHandler<SignInFields> = async (formData) => {
         try {
-            await signIn(formData);
+            const { user } = await signIn(formData);
+            user?.isAdmin
+                ? router.replace(AppRoute.DASHBOARD)
+                : router.replace(AppRoute.TRACKING);
         } catch (err) {
             const error = err as AxiosError<ApiErrorResponse>;
             const message = error.response?.data?.message;
             openModal(
                 <BaseModal
-                    title={tModals("error")}
+                    title={tModals("failure.title")}
+                    submitButtonText={tButtons("ok")}
                     description={
                         tErrors.has(message as string)
                             ? tErrors(message as string)
-                            : tModals("errorDescription")
+                            : tModals("failure.description")
                     }
                     onSubmit={closeModal}
-                    submitButtonClassName="hover:bg-red-500"
+                    submitButtonClassName="bg-red-500 hover:bg-red-400"
                 />
             );
         }
@@ -70,12 +81,18 @@ export const SignIn = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         className="w-11/12 sm:w-96 mx-auto space-y-4 p-6 rounded-md bg-midnight border-2 border-secondary"
                     >
-                        <h2 className="text-white text-center text-2xl font-semibold">
-                            {tForms("login")}
-                        </h2>
-                        <FormDescription className="text-sm text-slate-400">
-                            {tForms("loginDescription")}
-                        </FormDescription>
+                        <SectionTitleUI>
+                            {tModals("login.title")}
+                        </SectionTitleUI>
+                        {isActivatedLink ? (
+                            <TextUI className="text-sm text-slate-300 bg-app-green rounded-md py-2 px-4">
+                                {tModals("login.isActivated")}
+                            </TextUI>
+                        ) : (
+                            <TextUI className="text-sm text-slate-400">
+                                {tModals("login.description")}
+                            </TextUI>
+                        )}
                         <FormField
                             control={control}
                             name="email"
@@ -110,30 +127,11 @@ export const SignIn = () => {
                                 </FormItem>
                             )}
                         />
-                        {/* <FormField
-                            control={control}
-                            name="isAdmin"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormControl>
-                                        <div className="flex items-center gap-x-2">
-                                            <Switch
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                            <label className="text-slate-400 text-sm">
-                                                {tForms("isAdmin")}
-                                            </label>
-                                        </div>
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> */}
                         <CustomButton
                             type="submit"
                             text={tButtons("submit")}
                             className="rounded-md w-full"
+                            disabled={isPending}
                         />
                     </form>
                 </Form>

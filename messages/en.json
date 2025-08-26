@@ -5,6 +5,14 @@
         "locale": {
             "en": "English",
             "ua": "Ukraine"
+        },
+        "yes": "Yes",
+        "no": "No",
+        "notFound": "Page you are looking for was not found",
+        "user": {
+            "hello": "Hello, <gradient>{name}</gradient>",
+            "trackingDescription": "You can track your working hours in the table below.",
+            "dashboardDescription": "Here you can check each user that you have in the system."
         }
     },
     "serverErrors": {
@@ -12,23 +20,113 @@
     },
     "buttons": {
         "signIn": "Sign In",
+        "logout": "Log Out",
         "submit": "Submit",
         "cancel": "Cancel",
-        "ok": "Ok"
+        "addUser": "Add User",
+        "ok": "Ok",
+        "yes": "Yes",
+        "no": "No",
+        "addProject": "Add one more project",
+        "filter": "Filter",
+        "tracking": "Track time"
     },
     "modals": {
-        "error": "Error",
-        "errorDescription": "Something wrong happened while your process."
+        "failure": {
+            "title": "Failure",
+            "description": "Something wrong happened while your process."
+        },
+        "success": {
+            "title": "Success",
+            "description": "Your request has been successfully sent"
+        },
+        "isLogout": {
+            "title": "Are you sure you want to logout?"
+        },
+        "addUser": {
+            "title": "Add User"
+        },
+        "editUser": {
+            "title": "Edit User"
+        },
+        "deleteUser": {
+            "title": "Are you sure you want to delete this user?"
+        },
+        "timeTracking": {
+            "title": "Time Tracking"
+        },
+        "editStat": {
+            "title": "Edit Stat"
+        },
+        "login": {
+            "title": "Log In",
+            "description": "Check your inbox. We sent you required creds.",
+            "isActivated": "Your account is activated, please enter credentials that we sent on your email."
+        },
+        "filter": {
+            "title": "Filter"
+        }
     },
     "formErrors": {
         "emailInvalid": "Invalid email",
         "requiredField": "Field is required"
     },
     "forms": {
-        "login": "Log In",
-        "loginDescription": "Check your inbox. We sent you required creds.",
-        "emailPlaceholder": "Enter your email",
-        "passwordPlaceholder": "Enter your password",
-        "isAdmin": "Are you an Admin?"
+        "emailPlaceholder": "Enter email",
+        "passwordPlaceholder": "Enter password",
+        "projectPlaceholder": "Enter name of the project",
+        "datePlaceholder": "Enter date",
+        "hoursPlaceholder": "Hours",
+        "comment": "Comment",
+        "isAdmin": "Is this an Admin?",
+        "wantToDelete": "Are you sure you want to delete this project?",
+        "filter": {
+            "title": "Filter",
+            "users": {
+                "admin": "Admin",
+                "user": "User",
+                "projects": "Projects",
+                "userActive": "Active user",
+                "userDisable": "Disabled user",
+                "all": "All"
+            },
+            "stats": {
+                "thisWeek": "This week",
+                "thisMonth": "This month",
+                "prevWeek": "Previos week",
+                "prevMonth": "Previos month",
+                "dateFrom": "Date from:",
+                "dateTo": "Date to:"
+            }
+        }
+    },
+    "tables": {
+        "noWorkflow": "You don't have any workflow for now.",
+        "noUsers": "You don't have any user.",
+        "addUserDescription": "Click to add new user.",
+
+        "usersTable": {
+            "email": "Email",
+            "projects": "Project",
+            "admin": "Admin",
+            "activated": "Activated",
+            "hours": "Total hours",
+            "action": "Action"
+        },
+        "trackingTable": {
+            "name": "Project name",
+            "createdAt": "Created at",
+            "updatedAt": "Updated at",
+            "hours": "Total hours",
+            "comment": "Comment",
+            "action": "Action"
+        },
+        "statsTable": {
+            "date": "Date",
+            "comment": "Comment",
+            "hours": "Hours",
+            "action": "Action",
+            "noStats": "You don't have any stats yet."
+        }
     }
 }

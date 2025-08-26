@@ -5,6 +5,14 @@
         "locale": {
             "en": "Англійська",
             "ua": "Українська"
+        },
+        "yes": "Так",
+        "no": "Ні",
+        "notFound": "Page you are looking for is not found",
+        "user": {
+            "hello": "Привіт, <gradient>{name}</gradient>",
+            "trackingDescription": "Ви можете відстежувати свій робочий час у таблиці знизу.",
+            "dashboardDescription": "Тут ви можете перевірити кожного юзера що є у системі."
         }
     },
     "serverErrors": {
@@ -12,23 +20,112 @@
     },
     "buttons": {
         "signIn": "Увійти",
+        "logout": "Вийти",
         "submit": "Відправити",
         "cancel": "Відмінити",
-        "ok": "Зрозуміло"
+        "addUser": "Додати юзера",
+        "ok": "Зрозуміло",
+        "yes": "Так",
+        "no": "Ні",
+        "addProject": "Додати ще один проєкт",
+        "filter": "Фільтр",
+        "tracking": "Затрекати час"
     },
     "modals": {
-        "error": "Помилка",
-        "errorDescription": "Сталася невідома помилка."
+        "failure": {
+            "title": "Помилка",
+            "description": "Сталася невідома помилка."
+        },
+        "success": {
+            "title": "Успіх",
+            "description": "Ваш запит відправлено."
+        },
+        "isLogout": {
+            "title": "Ви впевнені що хочете вийти з системи?"
+        },
+        "addUser": {
+            "title": "Додати юзера"
+        },
+        "editUser": {
+            "title": "Редагування юзера"
+        },
+        "deleteUser": {
+            "title": "Ви впевнені що хочете видалити цього юзера?"
+        },
+        "timeTracking": {
+            "title": "Відстеження часу"
+        },
+        "editStat": {
+            "title": "Редагування статистики"
+        },
+        "login": {
+            "title": "Вхід у систему",
+            "description": "Перевірте вашу пошту. Ми відправили вам пароль для входу.",
+            "isActivated": "Ваш обліковий запис активовано, будь ласка, введіть облікові дані, які ми надіслали на вашу електронну пошту."
+        },
+        "filter": {
+            "title": "Фільтр"
+        }
     },
     "formErrors": {
         "emailInvalid": "Пошта не правильна",
         "requiredField": "Поле обов'язкове"
     },
     "forms": {
-        "login": "Вхід у систему",
-        "loginDescription": "Перевірте вашу пошту. Ми відправили вам пароль для входу.",
-        "emailPlaceholder": "Введіть вашу пошту",
-        "passwordPlaceholder": "Введіть ваш пароль",
-        "isAdmin": "Ви адмін?"
+        "emailPlaceholder": "Введіть пошту",
+        "passwordPlaceholder": "Введіть пароль",
+        "projectPlaceholder": "Введіть назву проєкту",
+        "datePlaceholder": "Введіть дату",
+        "hoursPlaceholder": "Години",
+        "comment": "Коментар",
+        "isAdmin": "Це адмін?",
+        "wantToDelete": "Впевнені що хочете видалити цей проєкт?",
+        "filter": {
+            "title": "Фільтр",
+            "users": {
+                "admin": "Адмін",
+                "user": "Юзер",
+                "projects": "Проєкти",
+                "userActive": "Активний юзер",
+                "userDisable": "Не активний юзер",
+                "all": "Всі"
+            },
+            "stats": {
+                "thisWeek": "Цей тиждень",
+                "thisMonth": "Цей місяць",
+                "prevWeek": "Минулий тиждень",
+                "prevMonth": "Минулий місяць",
+                "dateFrom": "З якого числа:",
+                "dateTo": "По яке число:"
+            }
+        }
+    },
+    "tables": {
+        "noWorkflow": "Наразі у вас немає жодного робочого процесу.",
+        "noUsers": "Наразі у вас немає жодного юзеру.",
+        "addUserDescription": "Натисніть кнопку щоб додати нового юзера.",
+        "usersTable": {
+            "email": "Пошта",
+            "projects": "Проєкти",
+            "admin": "Адмін",
+            "activated": "Акаунт активовано",
+            "hours": "Затрекані години",
+            "action": "Операція"
+        },
+        "trackingTable": {
+            "name": "Ім'я проєкту",
+            "createdAt": "Створено",
+            "updatedAt": "Оновлено",
+            "hours": "Затрекані години",
+            "comment": "Коментар",
+            "action": "Операція"
+        },
+        "statsTable": {
+            "date": "Дата",
+            "comment": "Коментар",
+            "hours": "Затрекані години",
+            "action": "Операція",
+            "noStats": "По цьому проєкту у вас немає статистики."
+        }
     }
 }
