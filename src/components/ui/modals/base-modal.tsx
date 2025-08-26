@@ -9,6 +9,7 @@ interface Props {
     description?: string;
     submitButtonText?: string;
     cancelButtonText?: string;
+    titleClassName?: string;
     submitButtonClassName?: string;
     cancelButtonClassName?: string;
     onSubmit?: () => void;
@@ -20,6 +21,7 @@ export const BaseModal: FC<Props> = ({
     description,
     submitButtonText,
     cancelButtonText,
+    titleClassName,
     submitButtonClassName,
     cancelButtonClassName,
     onSubmit,
@@ -28,7 +30,9 @@ export const BaseModal: FC<Props> = ({
     const tButtons = useTranslations("buttons");
     return (
         <DialogContent className="bg-midnight max-w-md">
-            <DialogTitle className="text-white text-center">
+            <DialogTitle
+                className={cn("text-white text-center", titleClassName)}
+            >
                 {title}
             </DialogTitle>
             <DialogDescription className="text-slate-400">

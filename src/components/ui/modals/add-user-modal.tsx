@@ -42,20 +42,30 @@ export const AddUserModal: FC<Props> = ({ openModal, closeModal }) => {
     const onSubmit: SubmitHandler<AddUserFields> = async (formData) => {
         try {
             await addUser(formData);
-            closeModal();
+            openModal(
+                <BaseModal
+                    title={tModals("success.title")}
+                    submitButtonText={tButtons("ok")}
+                    description={tModals("success.description")}
+                    onSubmit={closeModal}
+                    titleClassName="uppercase"
+                    submitButtonClassName="bg-app-green hover:bg-green-600"
+                />
+            );
         } catch (err) {
             const error = err as AxiosError<ApiErrorResponse>;
             const message = error.response?.data?.message;
             openModal(
                 <BaseModal
-                    title={tModals("error.title")}
+                    title={tModals("failure.title")}
                     submitButtonText={tButtons("ok")}
                     description={
                         tErrors.has(message as string)
                             ? tErrors(message as string)
-                            : tModals("error.description")
+                            : tModals("failure.description")
                     }
                     onSubmit={closeModal}
+                    titleClassName="uppercase"
                     submitButtonClassName="bg-red-500 hover:bg-red-400"
                 />
             );

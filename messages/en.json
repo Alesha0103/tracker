@@ -32,9 +32,13 @@
         "tracking": "Track time"
     },
     "modals": {
-        "error": {
-            "title": "An Error Occurred",
+        "failure": {
+            "title": "Failure",
             "description": "Something wrong happened while your process."
+        },
+        "success": {
+            "title": "Success",
+            "description": "Your request has been successfully sent"
         },
         "isLogout": {
             "title": "Are you sure you want to logout?"
