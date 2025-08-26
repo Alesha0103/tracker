@@ -27,9 +27,9 @@ export const LogoutModal: FC<Props> = ({ openModal, closeModal }) => {
         } catch {
             openModal(
                 <BaseModal
-                    title={tModals("error")}
+                    title={tModals("failure.title")}
                     submitButtonText={tButtons("ok")}
-                    description={tModals("errorDescription")}
+                    description={tModals("failure.description")}
                     onSubmit={closeModal}
                     submitButtonClassName="bg-red-500 hover:bg-red-400"
                 />

@@ -35,6 +35,10 @@ export type TrackingHoursDto = TrackingHoursFields & {
     projectId: string;
 };
 
+export type EditStatDto = TrackingHoursDto & {
+    statId: string;
+};
+
 export interface UsersDto {
     page: number;
     email?: string;
@@ -83,6 +87,7 @@ export interface FilterUsers {
 }
 
 export interface StatsItem {
+    id: string;
     date: string;
     comment: string;
     hours: number;

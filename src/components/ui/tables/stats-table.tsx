@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import {
     Table,
     TableBody,
@@ -10,20 +10,39 @@ import {
     TableRow,
 } from "../table";
 import { useTranslations } from "next-intl";
-import { Project } from "@/types/users";
+import { Project, StatsItem } from "@/types/users";
 import { Pencil } from "lucide-react";
 import { TitleUI } from "../typography";
 import { MIN_PAGES } from "@/constants";
 import { TablePagination } from "./table-pagination";
+import useModal from "@/hooks/use-modal";
+import { EditStatModal } from "../modals/edit-stat-modal";
 
 interface Props {
-    data?: Project;
+    project?: Project;
 }
 
-export const StatsTable: FC<Props> = ({ data }) => {
+export const StatsTable: FC<Props> = ({ project }) => {
     const tTables = useTranslations("tables");
 
-    const stats = data?.stats;
+    const stats = project?.stats;
+
+    const { openModal, closeModal, Modal } = useModal();
+
+    const onEditClick = useCallback(
+        (stat: StatsItem) => () => {
+            project &&
+                openModal(
+                    <EditStatModal
+                        stat={stat}
+                        project={project}
+                        openModal={openModal}
+                        closeModal={closeModal}
+                    />
+                );
+        },
+        [project]
+    );
 
     return (
         <>
@@ -61,7 +80,10 @@ export const StatsTable: FC<Props> = ({ data }) => {
                                     {stat.hours}
                                 </TableCell>
                                 <TableCell className="flex gap-x-3 justify-center">
-                                    <Pencil className="text-slate-400 hover:cursor-pointer hover:text-white" />
+                                    <Pencil
+                                        className="text-slate-400 hover:cursor-pointer hover:text-white"
+                                        onClick={onEditClick(stat)}
+                                    />
                                 </TableCell>
                             </TableRow>
                         ))
@@ -82,6 +104,7 @@ export const StatsTable: FC<Props> = ({ data }) => {
                     currentPage={Number(stats.currentPage || 1)}
                 />
             )}
+            <Modal />
         </>
     );
 };

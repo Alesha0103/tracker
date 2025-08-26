@@ -59,12 +59,12 @@ export const SignIn = () => {
             const message = error.response?.data?.message;
             openModal(
                 <BaseModal
-                    title={tModals("error")}
+                    title={tModals("failure.title")}
                     submitButtonText={tButtons("ok")}
                     description={
                         tErrors.has(message as string)
                             ? tErrors(message as string)
-                            : tModals("errorDescription")
+                            : tModals("failure.description")
                     }
                     onSubmit={closeModal}
                     submitButtonClassName="bg-red-500 hover:bg-red-400"

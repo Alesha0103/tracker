@@ -32,20 +32,30 @@ export const DeleteUserModal: FC<Props> = ({ id, openModal, closeModal }) => {
     const onSubmit = async () => {
         try {
             await deleteUser(id);
-            closeModal();
+            openModal(
+                <BaseModal
+                    title={tModals("success.title")}
+                    submitButtonText={tButtons("ok")}
+                    description={tModals("success.description")}
+                    onSubmit={closeModal}
+                    titleClassName="uppercase"
+                    submitButtonClassName="bg-green-600 hover:bg-green-500"
+                />
+            );
         } catch (err) {
             const error = err as AxiosError<ApiErrorResponse>;
             const message = error.response?.data?.message;
             openModal(
                 <BaseModal
-                    title={tModals("error")}
+                    title={tModals("failure.title")}
                     submitButtonText={tButtons("ok")}
                     description={
                         tErrors.has(message as string)
                             ? tErrors(message as string)
-                            : tModals("errorDescription")
+                            : tModals("failure.description")
                     }
                     onSubmit={closeModal}
+                    titleClassName="uppercase"
                     submitButtonClassName="bg-red-500 hover:bg-red-400"
                 />
             );

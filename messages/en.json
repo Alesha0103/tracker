@@ -32,8 +32,14 @@
         "tracking": "Track time"
     },
     "modals": {
-        "error": "An Error Occurred",
-        "errorDescription": "Something wrong happened while your process.",
+        "failure": {
+            "title": "Failure",
+            "description": "Something wrong happened while your process."
+        },
+        "success": {
+            "title": "Success",
+            "description": "Your request has been successfully sent"
+        },
         "isLogout": {
             "title": "Are you sure you want to logout?"
         },
@@ -48,6 +54,9 @@
         },
         "timeTracking": {
             "title": "Time Tracking"
+        },
+        "editStat": {
+            "title": "Edit Stat"
         },
         "login": {
             "title": "Log In",

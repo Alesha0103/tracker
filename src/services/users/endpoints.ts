@@ -1,6 +1,7 @@
 import { api } from "../../configs/api";
 import {
     AddUserDto,
+    EditStatDto,
     EditUserDto,
     Project,
     ProjectDto,
@@ -41,5 +42,10 @@ export const getProjects = async (): Promise<Project[]> => {
 
 export const getUserProject = async (dto: ProjectDto): Promise<Project> => {
     const { data } = await api.post("/project", dto);
+    return data;
+};
+
+export const editStat = async (dto: EditStatDto): Promise<Project> => {
+    const { data } = await api.patch("/edit", dto);
     return data;
 };
