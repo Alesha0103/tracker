@@ -13,7 +13,9 @@
             "hello": "Hello, <gradient>{name}</gradient>",
             "trackingDescription": "You can track your working hours in the table below.",
             "dashboardDescription": "Here you can check each user that you have in the system."
-        }
+        },
+        "tracking": "Tracking",
+        "dashboard": "Dashboard"
     },
     "serverErrors": {
         "E_VALIDATION_ERROR": "Incorrect email or password"
@@ -60,7 +62,7 @@
         },
         "login": {
             "title": "Log In",
-            "description": "Check your inbox. We sent you required creds.",
+            "description": "Please enter the required data.",
             "isActivated": "Your account is activated, please enter credentials that we sent on your email."
         },
         "filter": {

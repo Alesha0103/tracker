@@ -7,12 +7,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { AppRoute } from "@/enums/auth";
 import { CustomButton } from "./custom-button";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "./tooltip";
 
 export const HeroSection = () => {
     const pathname = usePathname();
     const router = useRouter();
 
-    const tUser = useTranslations("general.user");
+    const t = useTranslations("general");
     const { user } = useUserStore();
 
     const onArrowClick = useCallback(() => {
@@ -23,9 +29,40 @@ export const HeroSection = () => {
 
     return (
         <section className="container flex flex-col pt-16 pb-6 px-4 space-y-2 relative">
+            <div className="relative">
+                {user?.isAdmin && pathname === AppRoute.DASHBOARD && (
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <CustomButton
+                                text={<ArrowBigLeft />}
+                                onClick={onArrowClick}
+                                className="rounded-full p-3 absolute -top-10 lg:top-5 left-0"
+                            />
+                        </TooltipTrigger>
+                        <TooltipContent side="right" align="center">
+                            {t("tracking")}
+                        </TooltipContent>
+                    </Tooltip>
+                )}
+
+                {user?.isAdmin && pathname === AppRoute.TRACKING && (
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <CustomButton
+                                text={<ArrowBigRight />}
+                                onClick={onArrowClick}
+                                className="rounded-full p-3 absolute -top-10 lg:top-5 right-0"
+                            />
+                        </TooltipTrigger>
+                        <TooltipContent side="left" align="center">
+                            {t("dashboard")}
+                        </TooltipContent>
+                    </Tooltip>
+                )}
+            </div>
             <div>
                 <GlobalTitleUI>
-                    {tUser.rich("hello", {
+                    {t.rich("user.hello", {
                         name: user?.email || "--",
                         gradient: (chunk) => (
                             <SpanUI className="text-blue-500 hidden sm:inline">
@@ -40,24 +77,9 @@ export const HeroSection = () => {
             </div>
             <TextUI className="text-center">
                 {pathname === AppRoute.DASHBOARD
-                    ? tUser("dashboardDescription")
-                    : tUser("trackingDescription")}
+                    ? t("user.dashboardDescription")
+                    : t("user.trackingDescription")}
             </TextUI>
-
-            {user?.isAdmin && pathname === AppRoute.DASHBOARD && (
-                <CustomButton
-                    text={<ArrowBigLeft />}
-                    onClick={onArrowClick}
-                    className="rounded-full p-3 absolute top-3 left-5 lg:top-auto lg:left-10"
-                />
-            )}
-            {user?.isAdmin && pathname === AppRoute.TRACKING && (
-                <CustomButton
-                    text={<ArrowBigRight />}
-                    onClick={onArrowClick}
-                    className="rounded-full p-3 absolute top-3 right-5 lg:top-auto lg:right-10"
-                />
-            )}
         </section>
     );
 };

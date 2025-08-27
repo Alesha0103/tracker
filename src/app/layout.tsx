@@ -8,6 +8,7 @@ import { Footer } from "@/components/ui/footer";
 import { QueryProvider } from "@/components/query-provider";
 import { Suspense } from "react";
 import { Loader } from "@/components/ui/loader";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
     title: "Time Tracker",
@@ -26,11 +27,13 @@ const RootLayout = async ({
                 <NextIntlClientProvider>
                     <QueryProvider>
                         <Suspense fallback={<Loader />}>
-                            <Header />
-                            <main className="flex-1 flex flex-col h-fit w-full mx-auto">
-                                {children}
-                            </main>
-                            <Footer />
+                            <TooltipProvider delayDuration={100}>
+                                <Header />
+                                <main className="flex-1 flex flex-col h-fit w-full mx-auto">
+                                    {children}
+                                </main>
+                                <Footer />
+                            </TooltipProvider>
                         </Suspense>
                     </QueryProvider>
                 </NextIntlClientProvider>

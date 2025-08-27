@@ -6,7 +6,7 @@ import React, { useCallback, useMemo } from "react";
 import Logo from "../../assets/images/logo.png";
 import { useTranslations } from "next-intl";
 import { useUserStore } from "@/store/user-store";
-import { Locale } from "@/enums/auth";
+import { AppRoute, Locale } from "@/enums/auth";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./select";
 import { SelectItem } from "@radix-ui/react-select";
@@ -31,6 +31,10 @@ export const Header = () => {
     const { openModal, closeModal, Modal } = useModal();
 
     const rows = Object.keys(t.raw("locale"));
+
+    const onLogoClick = useCallback(() => {
+        user && router.push(AppRoute.TRACKING);
+    }, [user]);
 
     const changeLocale = useCallback(
         (locale: Locale) => {
@@ -118,7 +122,10 @@ export const Header = () => {
     const renderHeader = useMemo(() => {
         return (
             <div className="container py-3 px-6 hidden sm:flex justify-between items-center space-y-2 sm:space-y-0">
-                <div className="flex gap-x-1 sm:gap-x-2 items-center">
+                <div
+                    className="flex gap-x-1 sm:gap-x-2 items-center hover:cursor-pointer"
+                    onClick={onLogoClick}
+                >
                     <Image
                         width={25}
                         height={25}

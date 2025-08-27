@@ -24,12 +24,14 @@ export const useAddUser = () => {
 
 export const useEditUser = (id: string) => {
     const queryClient = useQueryClient();
-    const { setUser } = useUserStore();
+    const { user, setUser } = useUserStore();
 
     return useMutation({
         mutationFn: (dto: EditUserDto) => editUser(id, dto),
         onSuccess: (data) => {
-            setUser(data);
+            if (user?.id === data.id) {
+                setUser(data);
+            }
             queryClient.invalidateQueries({ queryKey: ["get-users"] });
         },
         mutationKey: ["edit-user"],
