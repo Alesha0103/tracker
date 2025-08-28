@@ -1,11 +1,9 @@
 "use client";
 import useModal from "@/hooks/use-modal";
 import React, { FC, useCallback } from "react";
-import { AddUserModal } from "../modals/add-user-modal";
 import { CustomButton } from "../custom-button";
 import { useTranslations } from "next-intl";
-import { FilterStatsFields, FilterUsers, Project } from "@/types/users";
-import { UsersFilterModal } from "../modals/users-filter-modal";
+import { FilterStatsFields, Project } from "@/types/users";
 import { TrackingModal } from "../modals/tracking-modal";
 import { StatsFilterModal } from "../modals/stats-filter-modal";
 

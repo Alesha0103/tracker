@@ -1,11 +1,11 @@
 "use client";
 
 import React, { FC, useCallback, useState } from "react";
-import { GlobalTitleUI, TitleUI } from "../ui/typography";
+import { GlobalTitleUI } from "../ui/typography";
 import { useGetUserProject } from "@/services/users/query";
 import { useUserStore } from "@/store/user-store";
 import { useTranslations } from "next-intl";
-import { ArrowBigLeft, Pencil } from "lucide-react";
+import { ArrowBigLeft } from "lucide-react";
 import { CustomButton } from "../ui/custom-button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader } from "../ui/loader";

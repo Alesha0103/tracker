@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     title: "Time Tracker",
 };
 
+// TODO: if storage doesn't have user then do login;
+
 const RootLayout = async ({
     children,
 }: Readonly<{

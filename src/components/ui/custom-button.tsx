@@ -1,5 +1,5 @@
 import { cn } from "@/utils";
-import React, { FC, forwardRef, ReactNode } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import { Loader } from "./loader";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {

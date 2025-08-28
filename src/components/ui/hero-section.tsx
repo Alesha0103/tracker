@@ -7,12 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { AppRoute } from "@/enums/auth";
 import { CustomButton } from "./custom-button";
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "./tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 export const HeroSection = () => {
     const pathname = usePathname();

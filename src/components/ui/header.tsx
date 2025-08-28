@@ -100,7 +100,7 @@ export const Header = () => {
                                 >
                                     <SelectTrigger className="w-full h-full sm:w-36 bg-secondary  text-center">
                                         <SelectValue
-                                            placeholder={t(`language`)}
+                                            placeholder={t("language")}
                                             className="text-center"
                                         >
                                             {t(`locale.${locale}`) ||
@@ -150,7 +150,7 @@ export const Header = () => {
                     >
                         <SelectTrigger className="w-full h-full sm:w-36 bg-secondary  text-center">
                             <SelectValue
-                                placeholder={t(`language`)}
+                                placeholder={t("language")}
                                 className="text-center"
                             >
                                 {t(`locale.${locale}`) || t("language")}

@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "build": "next build",
+        "build": "FORCE_COLOR=3 next build",
         "start": "next start",
         "lint": "next lint",
         "prettier": "prettier --write ."
@@ -47,6 +47,8 @@
         "@types/react-dom": "^19",
         "eslint": "9.32.0",
         "eslint-config-next": "15.4.6",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.4",
         "tailwindcss": "^3.4.17",
         "typescript": "^5"
     }

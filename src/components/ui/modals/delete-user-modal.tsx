@@ -3,16 +3,7 @@
 import React, { FC, ReactNode } from "react";
 import { BaseModal } from "./base-modal";
 import { useTranslations } from "next-intl";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { addUserSchema } from "@/schemas/users";
-import { AddUserFields } from "@/types/users";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "../form";
-import { Input } from "../input";
-import { CustomButton } from "../custom-button";
-import { Switch } from "../switch";
-import { DialogContent, DialogTitle } from "../dialog";
-import { useAddUser, useDeleteUser } from "@/services/users/mutations";
+import { useDeleteUser } from "@/services/users/mutations";
 import { AxiosError } from "axios";
 import { ApiErrorResponse } from "@/types/types";
 
