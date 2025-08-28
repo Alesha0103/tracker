@@ -18,7 +18,8 @@
         "dashboard": "Dashboard"
     },
     "serverErrors": {
-        "E_VALIDATION_ERROR": "Incorrect email or password"
+        "E_VALIDATION_ERROR": "Incorrect email or password",
+        "DAY_LIMIT": "You cannot log more than 24 hours in a single day"
     },
     "buttons": {
         "signIn": "Sign In",

@@ -67,6 +67,7 @@ export const SignIn = () => {
                             : tModals("failure.description")
                     }
                     onSubmit={closeModal}
+                    titleClassName="uppercase"
                     submitButtonClassName="bg-red-500 hover:bg-red-400"
                 />
             );
