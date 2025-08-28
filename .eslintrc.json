@@ -1,3 +1,55 @@
 {
-    "extends": ["next/core-web-vitals", "next/typescript"]
+    "extends": [
+        "next/core-web-vitals",
+        "next/typescript",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "plugins": ["@typescript-eslint", "react", "prettier", "import"],
+    "ignorePatterns": ["dist", ".eslintrc.cjs"],
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_",
+                "ignoreRestSiblings": true,
+                "caughtErrorsIgnorePattern": "^_"
+            }
+        ],
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/prop-types": "off",
+        "react/display-name": "off",
+        "react/jsx-no-undef": "error",
+        "react/jsx-uses-vars": "error",
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/exhaustive-deps": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react/jsx-no-useless-fragment": "error",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "no-extra-boolean-cast": "off",
+        "quotes": ["warn", "double"],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "no-console": "warn",
+        "no-multiple-empty-lines": [
+            "error",
+            { "max": 1, "maxEOF": 1, "maxBOF": 1 }
+        ],
+        "@typescript-eslint/no-unused-expressions": 0,
+        "@typescript-eslint/no-require-imports": 0
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    }
 }

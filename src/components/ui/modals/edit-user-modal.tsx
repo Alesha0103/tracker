@@ -56,7 +56,7 @@ export const EditUserModal: FC<Props> = ({ user, openModal, closeModal }) => {
 
     const { fields, append, remove } = useFieldArray({
         control,
-        // @ts-ignore
+        // @ts-expect-error
         name: "projects",
     });
 
