@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getRefreshToken, getUserType } from "./configs/server-storage";
+import {
+    getAccessToken,
+    getRefreshToken,
+    getUserType,
+} from "./configs/server-storage";
 import { AppRoute } from "./enums/auth";
 import { UserType } from "./enums/users";
 
 export async function middleware(req: NextRequest) {
-    const token = await getRefreshToken();
+    const accessToken = await getAccessToken();
+    const refreshRoken = await getRefreshToken();
     const userType = await getUserType();
+
+    const token = accessToken || refreshRoken;
     const currentPath = req.nextUrl.pathname;
 
     const protectedRoutes: string[] = [

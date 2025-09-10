@@ -1,8 +1,9 @@
 import axios from "axios";
-import { readAccessToken } from "./client-storage";
+import { refresh } from "@/services/auth/endpoints";
 
 export const api = axios.create({
     baseURL: process.env.API_URL,
+    withCredentials: true,
 });
 
 api.interceptors.response.use(
@@ -10,30 +11,29 @@ api.interceptors.response.use(
         return response;
     },
     async function (error) {
+        const originalRequest = error.config;
+
         if (
             error.response?.status === 401 &&
-            error.response?.data?.message === "NOT_AUTORIZED"
+            error.response?.data?.message === "TOKEN_EXPIRED"
         ) {
             if (typeof window !== "undefined") {
                 localStorage.clear();
                 window.location.href = "/";
             }
-            await api.post("/logout", {}, { withCredentials: true });
+            return Promise.reject(error);
         }
-        return Promise.reject(error);
-    }
-);
-
-api.interceptors.request.use(
-    async function (config) {
-        const token = await readAccessToken();
-
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+        if (
+            error.response?.status === 401 &&
+            error.response?.data?.message === "NOT_AUTORIZED"
+        ) {
+            try {
+                await refresh();
+                return api(originalRequest);
+            } catch {
+                return Promise.reject(error);
+            }
         }
-        return config;
-    },
-    function (error) {
         return Promise.reject(error);
     }
 );

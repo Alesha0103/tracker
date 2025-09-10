@@ -50,7 +50,7 @@ export const SignIn = () => {
 
     const onSubmit: SubmitHandler<SignInFields> = async (formData) => {
         try {
-            const { user } = await signIn(formData);
+            const user = await signIn(formData);
             user?.isAdmin
                 ? router.replace(AppRoute.DASHBOARD)
                 : router.replace(AppRoute.TRACKING);
